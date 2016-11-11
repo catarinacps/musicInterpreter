@@ -17,20 +17,11 @@ public class LeitorDecodificador {
             FileInputStream arquivoEntrada = new FileInputStream(nomeArquivo);
             InputStreamReader arquivoFormatado = new InputStreamReader(arquivoEntrada);
             
-            
-            
-            
-            FileReader arquivo = new FileReader(nomeArquivo);
-            BufferedReader leitorArquivo = new BufferedReader(arquivo);
-            
-            String linhaArquivo = leitorArquivo.readLine();
-            //codigo aqui?? decodificar???
-            
-            while(linhaArquivo != NULL){
-               //codigo aqui??
-               
-               linhaArquivo = leitorArquivo.readLine();
-            }
+            do{
+                int buffer = arquivoFormatado.read();
+                
+                //faz alguma coisa com o buffer, tipo decodificar sla memes
+            }while(buffer != -1);
             
             arquivo.close();
         }
