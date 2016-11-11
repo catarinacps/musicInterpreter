@@ -9,17 +9,19 @@ package musicinterpreter;
  *
  * @author Luiz Eduardo
  */
-public class Musica {
+public class Musica 
+    {
     private int volume;
     private int ritmo;
     private String instrumento;
     private Nota[] notas;
     
-    public Musica(int volume, int ritmo, String instrumento, String nomeArquivo){
+    public Musica(int volume, int ritmo, String instrumento, String nomeArquivo)
+    {
         
     }
     
-    private Nota[] leitorArquivo(nomeArquivo){
+    
         
     }
 }
