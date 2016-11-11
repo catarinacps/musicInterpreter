@@ -14,12 +14,14 @@ public class Nota {
     private int oitava;
     
     public aumentaOitava(){
-        oitava++;
+        if(oitava < 8)
+            oitava++;
     }
     
      
     public diminuiOitava(){
-        oitava--;
+        if(oitava > 1)
+            oitava--;
     }
     
     public resetOitava(){
