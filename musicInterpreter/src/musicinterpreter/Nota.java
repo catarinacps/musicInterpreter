@@ -12,6 +12,7 @@ package musicinterpreter;
 public class Nota {
     private String nomeNota;
     private int oitava;
+    private int volume;
     
     public aumentaOitava(){
         if(oitava < 8)
