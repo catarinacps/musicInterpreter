@@ -13,10 +13,10 @@ import java.io.*;
 
 
 
-public class leitorDecodificador {
+public class LeitorDecodificador {
     
     static final int OITAVA_PADRAO = 5;
-    static final float VOLUME_PADRAO = 64;
+    static final int VOLUME_PADRAO = 64;
     static final int INSTRUMENTO_PADRAO = 1;
     
     public String leArquivo(String nomeArquivo){
@@ -26,48 +26,46 @@ public class leitorDecodificador {
 
             String saidaDecodificada = "";
 
-            int i = 0;
-            int caracterLido = 0;
+            int byteLido = 0;
+            char caracterLido = 0;
             char caracterAnterior = 0; 
-            Nota notaTocada = new Nota();
+            Nota notaTocada = null;
             int oitavaAtual = OITAVA_PADRAO;
-            float volumeAtual = VOLUME_PADRAO;
+            int volumeAtual = VOLUME_PADRAO;
             int instrumentoAtual = INSTRUMENTO_PADRAO;
 
             do{
-				caracterLido = arquivoFormatado.read();
+				byteLido = arquivoFormatado.read();
+                                caracterLido = (char) byteLido;
 
-				if(testeInstrumento((char) caracterLido)){
-					alteraInstrumento((char) caracterLido, instrumentoAtual);
+				if(testeInstrumento(caracterLido)){
+					alteraInstrumento(caracterLido, instrumentoAtual);
 
 					saidaDecodificada += 'I' + Integer.toString(instrumentoAtual) + ' ';
 				}
-				else if(testeVolume((char) caracterLido)){
-					alteraVolume((char) caracterLido, volumeAtual);
+				else if(testeVolume(caracterLido)){
+					alteraVolume(caracterLido, volumeAtual);
 				}
-				else if(testeOitava((char) caracterLido)){
-					alteraOitava((char) caracterLido, oitavaAtual);
+				else if(testeOitava(caracterLido)){
+					alteraOitava(caracterLido, oitavaAtual);
 				}
-                                else if (testeNota((char) caracterLido)){
-                                    //e se a nota estiver vazia????
-                                    
-                                    notaTocada = decodificaEntrada((char) caracterLido, oitavaAtual, volumeAtual);
-                                    
-                                    //colocar a nota no stringao
+                                else if (testeNota(caracterLido)){
+                                    notaTocada = new Nota(caracterLido, oitavaAtual, volumeAtual);
+                                    saidaDecodificada += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
 				
 				}
                                 else{ // nenhum dos caracteres anteriores, entao repetir a nota anterior ou fazer uma pausa
                                     if (testeNota(caracterAnterior)){
-                                        // colocar a nota no stringao
+                                        saidaDecodificada += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
                                     }
                                     else{
-                                        //faz o urro aka silencio ou pausa
+                                        saidaDecodificada += "R ";
                                     }
                                 }
 
                                   
-                                caracterAnterior = (char) caracterLido;
-            }while(caracterLido != -1);
+                                caracterAnterior = caracterLido;
+            }while(byteLido != -1);
 
             arquivoEntrada.close();
 
@@ -79,35 +77,12 @@ public class leitorDecodificador {
         }
     }
 
-    private Nota decodificaEntrada(char entradaChar, int oitavaAtual, float volumeAtual){
-        switch(entradaChar){
-            case 'A':
-		Nota charDecodificado = new Nota("La", oitavaAtual, volumeAtual);
-		break;
-            case 'B':
-                Nota charDecodificado = new Nota("Si", oitavaAtual, volumeAtual);
-                break;
-            case 'C':
-                Nota charDecodificado = new Nota("Do", oitavaAtual, volumeAtual);
-                break;
-            case 'D':
-                Nota charDecodificado = new Nota("Re", oitavaAtual, volumeAtual);
-                break;
-            case 'E':
-                Nota charDecodificado = new Nota("Mi", oitavaAtual, volumeAtual);
-                break;
-            case 'F':
-                Nota charDecodificado = new Nota("Fa", oitavaAtual, volumeAtual);
-                break;
-            case 'G':
-                Nota charDecodificado = new Nota("Sol", oitavaAtual, volumeAtual);
-		break;
-        }
-        return charDecodificado;
-    }
-
-	private int multiplicaVolume(float volume, float multiplicador){
-		return volume*multiplicador;
+	private int multiplicaVolume(int volume, float multiplicador){
+                float multiplicacaoFloat = volume * multiplicador;
+                int multiplicacaoInt = Math.round(multiplicacaoFloat);
+                if(multiplicacaoInt > 127)
+                    multiplicacaoInt = 127;
+		return multiplicacaoInt;
 	}
 
 	private boolean testeInstrumento(char caracterLido){
@@ -131,8 +106,8 @@ public class leitorDecodificador {
 			case ',':
 				instrumentoAtual = 20; //Church Organ
 				break;
-			default:
-				instrumentoAtual += Character.getNumericValue(caracterLido); // se digito numerico, somar esse digito ao codigo do instrumento atual
+			default: // se digito numerico, somar esse digito ao codigo do instrumento atual
+				instrumentoAtual += Character.getNumericValue(caracterLido); 
 				break;
 		}
 	}
@@ -144,12 +119,12 @@ public class leitorDecodificador {
 		return false;
 	}
 
-	private void alteraVolume(char caracterLido, float volumeAtual){
+	private void alteraVolume(char caracterLido, int volumeAtual){
 		if(caracterLido == ' '){
-			volumeAtual = multiplicaVolume(volumeAtual, 2);
+			volumeAtual = multiplicaVolume(volumeAtual, 2f);
 		}
 		else{
-			volumeAtual = multiplicaVolume(volumeAtual, 1.1);
+			volumeAtual = multiplicaVolume(volumeAtual, 1.1f);
 		}
 	}
 
@@ -161,7 +136,7 @@ public class leitorDecodificador {
 	}
 
 	private void alteraOitava(char caracterLido, int oitavaAtual){
-		if(oitavaAtual == 8){
+		if(oitavaAtual == 9){
 			oitavaAtual = OITAVA_PADRAO;
 		}
 		else{
@@ -175,4 +150,6 @@ public class leitorDecodificador {
 		}
 		return false;
 	}
+        
+
 }

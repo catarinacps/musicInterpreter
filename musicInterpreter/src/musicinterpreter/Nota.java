@@ -10,26 +10,26 @@ package musicinterpreter;
  * @author Admin
  */
 public class Nota {
-    private String nomeNota;
+    private char codigoNota;
     private int oitava;
-    private float volume;
+    private int volume;
+
+    public Nota(char codigoNota, int oitava, int volume){
+        this.codigoNota = codigoNota;
+        this.oitava = oitava;
+        this.volume = volume;
+    }
+
     
-    public aumentaOitava(){
-        if(oitava < 8)
-            oitava++;
+    public char pegaNota(){
+        return this.codigoNota;
     }
     
-     
-    public diminuiOitava(){
-        if(oitava > 1)
-            oitava--;
+    public String pegaOitava(){
+        return Integer.toString(this.oitava);
     }
     
-    public resetOitava(){
-        oitava = 0;
-    }
-    
-    public tocaNota(){
-        
+    public String pegaVolume(){
+        return Integer.toString(this.volume);
     }
 }
