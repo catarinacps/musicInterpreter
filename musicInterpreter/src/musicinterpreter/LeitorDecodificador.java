@@ -11,11 +11,14 @@ package musicinterpreter;
  */
 import java.io.*;
 
-static final int OITAVA_PADRAO = 5;
-static final int VOLUME_PADRAO = 64;
-static final int INSTRUMENTO_PADRAO = 1;
+
 
 public class leitorDecodificador {
+    
+    static final int OITAVA_PADRAO = 5;
+    static final int VOLUME_PADRAO = 64;
+    static final int INSTRUMENTO_PADRAO = 1;
+    
     public String leArquivo(String nomeArquivo){
         try{
             FileInputStream arquivoEntrada = new FileInputStream(nomeArquivo);
@@ -24,11 +27,11 @@ public class leitorDecodificador {
             String saidaDecodificada = "";
 
             int i = 0;
-			int buffer = 0;
+            int buffer = 0;
             Nota anterior = new Nota();
-			int oitavaAtual = OITAVA_PADRAO;
-			float volumeAtual = VOLUME_PADRAO;
-			int instrumentoAtual = INSTRUMENTO_PADRAO;
+            int oitavaAtual = OITAVA_PADRAO;
+            float volumeAtual = VOLUME_PADRAO;
+            int instrumentoAtual = INSTRUMENTO_PADRAO;
 
             do{
 				buffer = arquivoFormatado.read();
@@ -49,12 +52,12 @@ public class leitorDecodificador {
 				}
 
 
-				//--------------------------------------------------------
-                saidaDecodificada[i] = decodificaEntrada((char) arquivoFormatado.read(), anterior, oitavaAtual, volumeAtual);
+				//--------------------i do'nt know wtf is happening------------------------------------
+                                saidaDecodificada[i] = decodificaEntrada((char) arquivoFormatado.read(), anterior, oitavaAtual, volumeAtual);
 
 				anterior = saidaDecodificada[i];
 				i++;
-                //faz alguma coisa com o buffer, tipo decodificar sla memes
+                                  //faz alguma coisa com o buffer, tipo decodificar sla memes
             }while(buffer != -1);
 
             arquivoEntrada.close();
@@ -70,40 +73,39 @@ public class leitorDecodificador {
     private Nota decodificaEntrada(char entradaChar, Nota anterior, int oitavaAtual, int volumeAtual){
         switch(entradaChar){
             case 'A':
-				Nota charDecodificado = new Nota("La", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'B':
-				Nota charDecodificado = new Nota("Si", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'C':
-				Nota charDecodificado = new Nota("Do", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'D':
-				Nota charDecodificado = new Nota("Re", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'E':
-				Nota charDecodificado = new Nota("Mi", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'F':
-				Nota charDecodificado = new Nota("Fa", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case 'G':
-				Nota charDecodificado = new Nota("Sol", oitavaAtual, volumeAtual);
-				return charDecodificado;
-			case default:
-
+		Nota charDecodificado = new Nota("La", oitavaAtual, volumeAtual);
+		break;
+            case 'B':
+                Nota charDecodificado = new Nota("Si", oitavaAtual, volumeAtual);
+                break;
+            case 'C':
+                Nota charDecodificado = new Nota("Do", oitavaAtual, volumeAtual);
+                break;
+            case 'D':
+                Nota charDecodificado = new Nota("Re", oitavaAtual, volumeAtual);
+                break;
+            case 'E':
+                Nota charDecodificado = new Nota("Mi", oitavaAtual, volumeAtual);
+                break;
+            case 'F':
+                Nota charDecodificado = new Nota("Fa", oitavaAtual, volumeAtual);
+                break;
+            case 'G':
+                Nota charDecodificado = new Nota("Sol", oitavaAtual, volumeAtual);
+		break;
         }
+        return charDecodificado;
     }
 
 	private int multiplicaVolume(int volume, int multiplicador){
 		return volume*multiplicador;
 	}
 
-	private int testeInstrumento(char buffer){
+	private boolean testeInstrumento(char buffer){
 		if(buffer == '!' || (buffer >= '0' && buffer <= '9') || buffer == '\n' || buffer == ';' || buffer == ','){
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 
 	private void alteraInstrumento(char buffer, int instrumentoAtual){
@@ -120,17 +122,17 @@ public class leitorDecodificador {
 			case ',':
 				instrumentoAtual = 20; //Church Organ
 				break;
-			case default:
-				instrumentoAtual += Character.getNumericValue(buffer);
+			default:
+				instrumentoAtual += Character.getNumericValue(buffer); // se digito numerico, somar esse digito ao codigo do instrumento atual
 				break;
 		}
 	}
 
-	private int testeVolume(char buffer){
+	private boolean testeVolume(char buffer){
 		if(buffer == ' ' || buffer == 'O' || buffer == 'o' || buffer == 'I' || buffer == 'i' || buffer == 'U' || buffer == 'u'){
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 
 	private void alteraVolume(char buffer, int volumeAtual){
@@ -142,11 +144,11 @@ public class leitorDecodificador {
 		}
 	}
 
-	private int testeOitava(char buffer){
+	private boolean testeOitava(char buffer){
 		if(buffer == '?'){
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 
 	private void alteraOitava(char buffer, int oitavaAtual){
