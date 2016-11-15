@@ -16,7 +16,7 @@ import java.io.*;
 public class leitorDecodificador {
     
     static final int OITAVA_PADRAO = 5;
-    static final int VOLUME_PADRAO = 64;
+    static final float VOLUME_PADRAO = 64;
     static final int INSTRUMENTO_PADRAO = 1;
     
     public String leArquivo(String nomeArquivo){
@@ -27,38 +27,47 @@ public class leitorDecodificador {
             String saidaDecodificada = "";
 
             int i = 0;
-            int buffer = 0;
-            Nota anterior = new Nota();
+            int caracterLido = 0;
+            char caracterAnterior = 0; 
+            Nota notaTocada = new Nota();
             int oitavaAtual = OITAVA_PADRAO;
             float volumeAtual = VOLUME_PADRAO;
             int instrumentoAtual = INSTRUMENTO_PADRAO;
 
             do{
-				buffer = arquivoFormatado.read();
+				caracterLido = arquivoFormatado.read();
 
-				if(testeInstrumento((char) buffer)){
-					alteraInstrumento((char) buffer, instrumentoAtual);
+				if(testeInstrumento((char) caracterLido)){
+					alteraInstrumento((char) caracterLido, instrumentoAtual);
 
 					saidaDecodificada += 'I' + Integer.toString(instrumentoAtual) + ' ';
 				}
-				else if(testeVolume((char) buffer)){
-					alteraVolume((char) buffer, volumeAtual);
+				else if(testeVolume((char) caracterLido)){
+					alteraVolume((char) caracterLido, volumeAtual);
 				}
-				else if(testeOitava((char) buffer)){
-					alteraOitava((char) buffer, oitavaAtual);
+				else if(testeOitava((char) caracterLido)){
+					alteraOitava((char) caracterLido, oitavaAtual);
 				}
-				else{
-					
+                                else if (testeNota((char) caracterLido)){
+                                    //e se a nota estiver vazia????
+                                    
+                                    notaTocada = decodificaEntrada((char) caracterLido, oitavaAtual, volumeAtual);
+                                    
+                                    //colocar a nota no stringao
+				
 				}
+                                else{ // nenhum dos caracteres anteriores, entao repetir a nota anterior ou fazer uma pausa
+                                    if (testeNota(caracterAnterior)){
+                                        // colocar a nota no stringao
+                                    }
+                                    else{
+                                        //faz o urro aka silencio ou pausa
+                                    }
+                                }
 
-
-				//--------------------i do'nt know wtf is happening------------------------------------
-                                saidaDecodificada[i] = decodificaEntrada((char) arquivoFormatado.read(), anterior, oitavaAtual, volumeAtual);
-
-				anterior = saidaDecodificada[i];
-				i++;
-                                  //faz alguma coisa com o buffer, tipo decodificar sla memes
-            }while(buffer != -1);
+                                  
+                                caracterAnterior = (char) caracterLido;
+            }while(caracterLido != -1);
 
             arquivoEntrada.close();
 
@@ -70,7 +79,7 @@ public class leitorDecodificador {
         }
     }
 
-    private Nota decodificaEntrada(char entradaChar, Nota anterior, int oitavaAtual, int volumeAtual){
+    private Nota decodificaEntrada(char entradaChar, int oitavaAtual, float volumeAtual){
         switch(entradaChar){
             case 'A':
 		Nota charDecodificado = new Nota("La", oitavaAtual, volumeAtual);
@@ -97,19 +106,19 @@ public class leitorDecodificador {
         return charDecodificado;
     }
 
-	private int multiplicaVolume(int volume, int multiplicador){
+	private int multiplicaVolume(float volume, float multiplicador){
 		return volume*multiplicador;
 	}
 
-	private boolean testeInstrumento(char buffer){
-		if(buffer == '!' || (buffer >= '0' && buffer <= '9') || buffer == '\n' || buffer == ';' || buffer == ','){
+	private boolean testeInstrumento(char caracterLido){
+		if(caracterLido == '!' || (caracterLido >= '0' && caracterLido <= '9') || caracterLido == '\n' || caracterLido == ';' || caracterLido == ','){
 			return true;
 		}
 		return false;
 	}
 
-	private void alteraInstrumento(char buffer, int instrumentoAtual){
-		switch(buffer){
+	private void alteraInstrumento(char caracterLido, int instrumentoAtual){
+		switch(caracterLido){
 			case '!':
 				instrumentoAtual = 7; //Harpsichord
 				break;
@@ -123,20 +132,20 @@ public class leitorDecodificador {
 				instrumentoAtual = 20; //Church Organ
 				break;
 			default:
-				instrumentoAtual += Character.getNumericValue(buffer); // se digito numerico, somar esse digito ao codigo do instrumento atual
+				instrumentoAtual += Character.getNumericValue(caracterLido); // se digito numerico, somar esse digito ao codigo do instrumento atual
 				break;
 		}
 	}
 
-	private boolean testeVolume(char buffer){
-		if(buffer == ' ' || buffer == 'O' || buffer == 'o' || buffer == 'I' || buffer == 'i' || buffer == 'U' || buffer == 'u'){
+	private boolean testeVolume(char caracterLido){
+		if(caracterLido == ' ' || caracterLido == 'O' || caracterLido == 'o' || caracterLido == 'I' || caracterLido == 'i' || caracterLido == 'U' || caracterLido == 'u'){
 			return true;
 		}
 		return false;
 	}
 
-	private void alteraVolume(char buffer, int volumeAtual){
-		if(buffer == ' '){
+	private void alteraVolume(char caracterLido, float volumeAtual){
+		if(caracterLido == ' '){
 			volumeAtual = multiplicaVolume(volumeAtual, 2);
 		}
 		else{
@@ -144,19 +153,26 @@ public class leitorDecodificador {
 		}
 	}
 
-	private boolean testeOitava(char buffer){
-		if(buffer == '?'){
+	private boolean testeOitava(char caracterLido){
+		if(caracterLido == '?'){
 			return true;
 		}
 		return false;
 	}
 
-	private void alteraOitava(char buffer, int oitavaAtual){
+	private void alteraOitava(char caracterLido, int oitavaAtual){
 		if(oitavaAtual == 8){
 			oitavaAtual = OITAVA_PADRAO;
 		}
 		else{
 			oitavaAtual += 1;
 		}
+	}
+        
+        private boolean testeNota(char caracterLido){
+		if(caracterLido >= 'A' && caracterLido <= 'G'){
+			return true;
+		}
+		return false;
 	}
 }
