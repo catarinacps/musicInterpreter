@@ -5,9 +5,18 @@
  */
 package musicinterpreter;
 
+import java.io.File;
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
+import org.jfugue.midi.MidiFileManager;
+import org.jfugue.pattern.Pattern;
+import org.jfugue.player.ManagedPlayer;
+import org.jfugue.player.Player;
+
 /**
  *
- * @author Luiz Eduardo
+ * @author Henrique Silva, Nicolas Eymael e Luis Miguel
  */
 public class Musica {
     private String notas;
@@ -19,17 +28,58 @@ public class Musica {
 	static final int VOLUME_MAXIMO = 127;
 	static final int ULTIMA_OITAVA = 9;
 
-    public Musica(String arquivoIntegral){
-        this.notas = decodificaArquivo(arquivoIntegral);
+	/*
+	------------------------------------------------------------------------------------------------------------------------
+	Metodos Publicos:
+	->Musica() "construtor":
+	Obviamente.
+
+	->tocaMusica():
+	Usando o parametro "notas", que e uma string, cria um ManagedPlayer para suportar pausas e toca a musica.
+	A parte de pausar nao foi implementada ainda.
+
+	->pegaNotas():
+	Retorna o string "notas"
+
+	->
+
+	------------------------------------------------------------------------------------------------------------------------
+	*/
+
+    public Musica(String entradaTexto){
+        this.notas = decodificaArquivo(entradaTexto);
     }
 
-	/*public void tocaMusica(){
+	public void tocaMusica() throws InvalidMidiDataException, MidiUnavailableException{
 		Player tocador = new Player();
-		tocador.play(this.notas);
-	}*/
+		ManagedPlayer tocadorControlado = new ManagedPlayer();
 
-	private String decodificaArquivo(String arquivoIntegral){
-		char caracterAnterior = 0;
+		tocadorControlado.start(tocador.getSequence(this.notas));
+		//implementar dps pause, stop e resume (junto com a interface tlg)
+	}
+
+	public String pegaNotas(){
+		return this.notas;
+	}
+
+	public void salvaMIDI() throws IOException{
+		Pattern musica = new Pattern(this.notas);
+
+		MidiFileManager.savePatternToMidi(musica, new File("nomearquivo.mid"));
+		//implementar na interface pro cara escolher o nome tlg
+	}
+
+	/*
+	------------------------------------------------------------------------------------------------------------------------
+	Metodos Privados:
+	->decodificaArquivo(String entradaTexto):
+	Recebe o arquivo de entrada em forma de string e o transforma numa sequencia de notas
+	tambem em formato de string.
+	Acompanha os seus metodos auxiliares (tambem privados)
+
+	------------------------------------------------------------------------------------------------------------------------
+	*/
+	private String decodificaArquivo(String entradaTexto){
 		String saidaDecodificada = "";
 		Nota notaTocada = null;
 		int oitavaAtual = OITAVA_PADRAO;
@@ -37,9 +87,9 @@ public class Musica {
 		int instrumentoAtual = INSTRUMENTO_PADRAO;
 		int i = 0;
 
-		char[] stringIntegral = arquivoIntegral.toCharArray();
+		char[] stringIntegral = entradaTexto.toCharArray();
 
-		for(i = 0; i < arquivoIntegral.length(); i++){
+		for(i = 0; i < entradaTexto.length(); i++){
 			if(testeInstrumento(stringIntegral[i])){
 				instrumentoAtual = alteraInstrumento(stringIntegral[i], instrumentoAtual);
 
@@ -153,8 +203,4 @@ public class Musica {
 	//------------------------------------------------------------------------------------------------------------------------
 	//Fim dos metodos auxiliares de decodificaArquivo
 	//------------------------------------------------------------------------------------------------------------------------
-
-	public String pegaNotas(){
-		return this.notas;
-	}
 }
