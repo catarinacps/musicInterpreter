@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="name" type="java.lang.String" value="FramePrincipal" noResource="true"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1024, 768]"/>
+    </Property>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="PainelPai" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="PainelPai" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="PainelPai">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="PainelPrincipal"/>
+      </AccessibilityProperties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="PainelInicial">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="cartaoInicial"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="346" pref="346" max="-2" attributes="0"/>
+                      <Component id="rotulokatiau" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="botaoIrConfiguracoes" min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace min="529" pref="529" max="-2" attributes="0"/>
+                      <Component id="botaoIrTocador" min="-2" pref="73" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="rotulokatiau" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="309" pref="309" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botaoIrConfiguracoes" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoIrTocador" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="botaoIrConfiguracoes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Configuracoes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoIrConfiguracoesActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoIrTocador">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="go for it"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoIrTocadorActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="rotulokatiau">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="katiau"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="PainelConfiguracoes">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="cartaoConfiguracoes"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="botaoVoltarConfiguracoes" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="rotulovolume" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
+                              <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="rotuloinstrumento" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="rotulofodase" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="rotulovolume" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                      <Component id="rotuloinstrumento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
+                      <Component id="rotulofodase" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="309" pref="309" max="-2" attributes="0"/>
+                      <Component id="botaoVoltarConfiguracoes" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="botaoVoltarConfiguracoes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="voltar pro menu"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVoltarConfiguracoesActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="rotulovolume">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="volume"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="rotuloinstrumento">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="instrumento"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="rotulofodase">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="fodase"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSlider" name="jSlider1">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="PainelTocador">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="cartaoTocador"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="131" pref="131" max="-2" attributes="0"/>
+                      <Component id="botaovoltalogo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="455" pref="455" max="-2" attributes="0"/>
+                      <Component id="botaoprei" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="85" pref="85" max="-2" attributes="0"/>
+                      <Component id="botaopausi" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="540" pref="540" max="-2" attributes="0"/>
+                      <Component id="botaovoltalogo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botaoprei" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaopausi" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="botaoprei">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="prei"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaopreiActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaopausi">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="pausi"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaovoltalogo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="voltalogo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaovoltalogoActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
