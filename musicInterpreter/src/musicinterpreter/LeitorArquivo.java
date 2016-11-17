@@ -20,14 +20,14 @@ public class LeitorArquivo {
             InputStreamReader arquivoFormatado = new InputStreamReader(arquivoEntrada);
 
             int byteLido = 0;
-			String saidaIntegral = "";
+	    String saidaIntegral = "";
 
-			byteLido = arquivoFormatado.read();
+	    byteLido = arquivoFormatado.read();
 
             while(byteLido != -1){
                 saidaIntegral += (char) byteLido;
 
-				byteLido = arquivoFormatado.read();
+		byteLido = arquivoFormatado.read();
             }
 
             arquivoEntrada.close();
