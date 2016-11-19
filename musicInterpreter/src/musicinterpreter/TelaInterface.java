@@ -24,7 +24,7 @@ public class TelaInterface extends javax.swing.JFrame {
      */
     public TelaInterface() {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/hue.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/mccree.png")));
     }
 
     /**
