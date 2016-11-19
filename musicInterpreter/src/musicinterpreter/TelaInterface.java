@@ -6,11 +6,12 @@
 package musicinterpreter;
 
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
-
 
 /**
  *
@@ -23,7 +24,7 @@ public class TelaInterface extends javax.swing.JFrame {
      */
     public TelaInterface() {
         initComponents();
-       //mudar o nome da imagem this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/rocketicon.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/hue.png")));
     }
 
     /**
@@ -35,203 +36,197 @@ public class TelaInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PainelPai = new javax.swing.JPanel();
+        PainelPrincipal = new javax.swing.JPanel();
         PainelInicial = new javax.swing.JPanel();
-        botaoIrConfiguracoes = new javax.swing.JButton();
-        botaoIrTocador = new javax.swing.JButton();
-        rotulokatiau = new javax.swing.JLabel();
+        fundoInicial = new javax.swing.JLabel();
+        botaoInicialEntrada = new javax.swing.JButton();
+        botaoInicialAjuda = new javax.swing.JButton();
+        botaoInicialConfiguracoes = new javax.swing.JButton();
+        botaoInicialAvancar = new javax.swing.JButton();
         PainelConfiguracoes = new javax.swing.JPanel();
-        botaoVoltarConfiguracoes = new javax.swing.JButton();
-        rotulovolume = new javax.swing.JLabel();
-        rotuloinstrumento = new javax.swing.JLabel();
-        rotulofodase = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
+        fundoConfiguracoes = new javax.swing.JLabel();
+        botaoConfiguracoesVoltar = new javax.swing.JButton();
         PainelTocador = new javax.swing.JPanel();
-        botaoprei = new javax.swing.JButton();
-        botaopausi = new javax.swing.JButton();
-        botaovoltalogo = new javax.swing.JButton();
+        fundoTocador = new javax.swing.JLabel();
+        botaoTocadorVoltar = new javax.swing.JButton();
+        botaoTocadorSalvar = new javax.swing.JButton();
+        botaoTocadorStop = new javax.swing.JButton();
+        botaoTocadorPause = new javax.swing.JButton();
+        botaoTocadorPlay = new javax.swing.JButton();
+        PainelEdicao = new javax.swing.JPanel();
+        fundoEdicao = new javax.swing.JLabel();
+        botaoEdicaoVoltar = new javax.swing.JButton();
+        botaoEdicaoSalvar = new javax.swing.JButton();
+        PainelAjuda = new javax.swing.JPanel();
+        fundoAjuda = new javax.swing.JLabel();
+        botaoAjudaVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("FramePrincipal"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 797));
         setResizable(false);
 
-        PainelPai.setName(""); // NOI18N
-        PainelPai.setLayout(new java.awt.CardLayout());
+        PainelPrincipal.setLayout(new java.awt.CardLayout());
 
-        botaoIrConfiguracoes.setText("Configuracoes");
-        botaoIrConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
+        PainelInicial.setLayout(null);
+
+        fundoInicial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fundoInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telainicialsla.png"))); // NOI18N
+        PainelInicial.add(fundoInicial);
+        fundoInicial.setBounds(0, 0, 1024, 768);
+        PainelInicial.add(botaoInicialEntrada);
+        botaoInicialEntrada.setBounds(50, 500, 460, 80);
+
+        botaoInicialAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoIrConfiguracoesActionPerformed(evt);
+                botaoInicialAjudaActionPerformed(evt);
             }
         });
+        PainelInicial.add(botaoInicialAjuda);
+        botaoInicialAjuda.setBounds(940, 10, 70, 70);
 
-        botaoIrTocador.setText("go for it");
-        botaoIrTocador.addActionListener(new java.awt.event.ActionListener() {
+        botaoInicialConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoIrTocadorActionPerformed(evt);
+                botaoInicialConfiguracoesActionPerformed(evt);
             }
         });
+        PainelInicial.add(botaoInicialConfiguracoes);
+        botaoInicialConfiguracoes.setBounds(50, 660, 460, 70);
 
-        rotulokatiau.setText("katiau");
-
-        javax.swing.GroupLayout PainelInicialLayout = new javax.swing.GroupLayout(PainelInicial);
-        PainelInicial.setLayout(PainelInicialLayout);
-        PainelInicialLayout.setHorizontalGroup(
-            PainelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelInicialLayout.createSequentialGroup()
-                .addGap(346, 346, 346)
-                .addComponent(rotulokatiau, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(PainelInicialLayout.createSequentialGroup()
-                .addComponent(botaoIrConfiguracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(529, 529, 529)
-                .addComponent(botaoIrTocador, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        PainelInicialLayout.setVerticalGroup(
-            PainelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelInicialLayout.createSequentialGroup()
-                .addComponent(rotulokatiau)
-                .addGap(309, 309, 309)
-                .addGroup(PainelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoIrConfiguracoes)
-                    .addComponent(botaoIrTocador)))
-        );
-
-        PainelPai.add(PainelInicial, "cartaoInicial");
-
-        botaoVoltarConfiguracoes.setText("voltar pro menu");
-        botaoVoltarConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
+        botaoInicialAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoVoltarConfiguracoesActionPerformed(evt);
+                botaoInicialAvancarActionPerformed(evt);
             }
         });
+        PainelInicial.add(botaoInicialAvancar);
+        botaoInicialAvancar.setBounds(540, 660, 460, 70);
 
-        rotulovolume.setText("volume");
+        PainelPrincipal.add(PainelInicial, "cartaoInicial");
 
-        rotuloinstrumento.setText("instrumento");
+        PainelConfiguracoes.setLayout(null);
 
-        rotulofodase.setText("fodase");
+        fundoConfiguracoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fundoConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/configuracoes.png"))); // NOI18N
+        PainelConfiguracoes.add(fundoConfiguracoes);
+        fundoConfiguracoes.setBounds(0, 0, 1024, 768);
 
-        javax.swing.GroupLayout PainelConfiguracoesLayout = new javax.swing.GroupLayout(PainelConfiguracoes);
-        PainelConfiguracoes.setLayout(PainelConfiguracoesLayout);
-        PainelConfiguracoesLayout.setHorizontalGroup(
-            PainelConfiguracoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(botaoVoltarConfiguracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(PainelConfiguracoesLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(PainelConfiguracoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelConfiguracoesLayout.createSequentialGroup()
-                        .addComponent(rotulovolume)
-                        .addGap(166, 166, 166)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rotuloinstrumento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rotulofodase, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        PainelConfiguracoesLayout.setVerticalGroup(
-            PainelConfiguracoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelConfiguracoesLayout.createSequentialGroup()
-                .addGroup(PainelConfiguracoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rotulovolume)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(rotuloinstrumento)
-                .addGap(47, 47, 47)
-                .addComponent(rotulofodase)
-                .addGap(309, 309, 309)
-                .addComponent(botaoVoltarConfiguracoes))
-        );
-
-        PainelPai.add(PainelConfiguracoes, "cartaoConfiguracoes");
-
-        botaoprei.setText("prei");
-        botaoprei.addActionListener(new java.awt.event.ActionListener() {
+        botaoConfiguracoesVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaopreiActionPerformed(evt);
+                botaoConfiguracoesVoltarActionPerformed(evt);
             }
         });
+        PainelConfiguracoes.add(botaoConfiguracoesVoltar);
+        botaoConfiguracoesVoltar.setBounds(40, 650, 130, 90);
 
-        botaopausi.setText("pausi");
+        PainelPrincipal.add(PainelConfiguracoes, "cartaoConfiguracoes");
 
-        botaovoltalogo.setText("voltalogo");
-        botaovoltalogo.addActionListener(new java.awt.event.ActionListener() {
+        PainelTocador.setLayout(null);
+
+        fundoTocador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaplay.png"))); // NOI18N
+        PainelTocador.add(fundoTocador);
+        fundoTocador.setBounds(0, 0, 1024, 768);
+
+        botaoTocadorVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaovoltalogoActionPerformed(evt);
+                botaoTocadorVoltarActionPerformed(evt);
             }
         });
+        PainelTocador.add(botaoTocadorVoltar);
+        botaoTocadorVoltar.setBounds(20, 520, 120, 80);
+        PainelTocador.add(botaoTocadorSalvar);
+        botaoTocadorSalvar.setBounds(920, 520, 70, 80);
+        PainelTocador.add(botaoTocadorStop);
+        botaoTocadorStop.setBounds(150, 630, 130, 130);
+        PainelTocador.add(botaoTocadorPause);
+        botaoTocadorPause.setBounds(440, 630, 140, 130);
+        PainelTocador.add(botaoTocadorPlay);
+        botaoTocadorPlay.setBounds(740, 630, 130, 130);
 
-        javax.swing.GroupLayout PainelTocadorLayout = new javax.swing.GroupLayout(PainelTocador);
-        PainelTocador.setLayout(PainelTocadorLayout);
-        PainelTocadorLayout.setHorizontalGroup(
-            PainelTocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelTocadorLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(botaovoltalogo))
-            .addGroup(PainelTocadorLayout.createSequentialGroup()
-                .addGap(455, 455, 455)
-                .addComponent(botaoprei)
-                .addGap(85, 85, 85)
-                .addComponent(botaopausi))
-        );
-        PainelTocadorLayout.setVerticalGroup(
-            PainelTocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelTocadorLayout.createSequentialGroup()
-                .addGap(540, 540, 540)
-                .addComponent(botaovoltalogo)
-                .addGap(103, 103, 103)
-                .addGroup(PainelTocadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoprei)
-                    .addComponent(botaopausi)))
-        );
+        PainelPrincipal.add(PainelTocador, "cartaoTocador");
 
-        PainelPai.add(PainelTocador, "cartaoTocador");
+        PainelEdicao.setLayout(null);
+
+        fundoEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaedicao.png"))); // NOI18N
+        PainelEdicao.add(fundoEdicao);
+        fundoEdicao.setBounds(0, 0, 1024, 768);
+
+        botaoEdicaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEdicaoVoltarActionPerformed(evt);
+            }
+        });
+        PainelEdicao.add(botaoEdicaoVoltar);
+        botaoEdicaoVoltar.setBounds(40, 660, 130, 70);
+        PainelEdicao.add(botaoEdicaoSalvar);
+        botaoEdicaoSalvar.setBounds(390, 660, 80, 70);
+
+        PainelPrincipal.add(PainelEdicao, "cartaoEdicao");
+
+        PainelAjuda.setLayout(null);
+
+        fundoAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaajuda.png"))); // NOI18N
+        PainelAjuda.add(fundoAjuda);
+        fundoAjuda.setBounds(0, 0, 1024, 768);
+
+        botaoAjudaVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAjudaVoltarActionPerformed(evt);
+            }
+        });
+        PainelAjuda.add(botaoAjudaVoltar);
+        botaoAjudaVoltar.setBounds(40, 660, 130, 70);
+
+        PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelPai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelPai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        PainelPai.getAccessibleContext().setAccessibleName("PainelPrincipal");
-
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoIrConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIrConfiguracoesActionPerformed
-        CardLayout cartao = (CardLayout) PainelPai.getLayout();
-        cartao.show(PainelPai, "cartaoConfiguracoes");
-    }//GEN-LAST:event_botaoIrConfiguracoesActionPerformed
+    private void botaoInicialAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAvancarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoTocador");
+    }//GEN-LAST:event_botaoInicialAvancarActionPerformed
 
-    private void botaoIrTocadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIrTocadorActionPerformed
-        CardLayout cartao = (CardLayout) PainelPai.getLayout();
-        cartao.show(PainelPai, "cartaoTocador");
-    }//GEN-LAST:event_botaoIrTocadorActionPerformed
+    private void botaoInicialAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAjudaActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoAjuda");
+    }//GEN-LAST:event_botaoInicialAjudaActionPerformed
 
-    private void botaoVoltarConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarConfiguracoesActionPerformed
-        CardLayout cartao = (CardLayout) PainelPai.getLayout();
-        cartao.show(PainelPai, "cartaoInicial");
-    }//GEN-LAST:event_botaoVoltarConfiguracoesActionPerformed
+    private void botaoInicialConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialConfiguracoesActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoConfiguracoes");
+    }//GEN-LAST:event_botaoInicialConfiguracoesActionPerformed
 
-    private void botaovoltalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaovoltalogoActionPerformed
-        CardLayout cartao = (CardLayout) PainelPai.getLayout();
-        cartao.show(PainelPai, "cartaoInicial");
-    }//GEN-LAST:event_botaovoltalogoActionPerformed
+    private void botaoConfiguracoesVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfiguracoesVoltarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoInicial");
+    }//GEN-LAST:event_botaoConfiguracoesVoltarActionPerformed
 
-    private void botaopreiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaopreiActionPerformed
-        String entradaLida = LeitorArquivo.leArquivo("arquivoKatiau.txt");
-        Musica novaMusica = new Musica(entradaLida);
-        try {
-            novaMusica.tocaMusica();
-        } catch (InvalidMidiDataException ex) {
-            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MidiUnavailableException ex) {
-            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_botaopreiActionPerformed
+    private void botaoTocadorVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorVoltarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoInicial");
+    }//GEN-LAST:event_botaoTocadorVoltarActionPerformed
+
+    private void botaoEdicaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoVoltarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoInicial");
+    }//GEN-LAST:event_botaoEdicaoVoltarActionPerformed
+
+    private void botaoAjudaVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAjudaVoltarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoInicial");
+    }//GEN-LAST:event_botaoAjudaVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,20 +264,29 @@ public class TelaInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PainelAjuda;
     private javax.swing.JPanel PainelConfiguracoes;
+    private javax.swing.JPanel PainelEdicao;
     private javax.swing.JPanel PainelInicial;
-    private javax.swing.JPanel PainelPai;
+    private javax.swing.JPanel PainelPrincipal;
     private javax.swing.JPanel PainelTocador;
-    private javax.swing.JButton botaoIrConfiguracoes;
-    private javax.swing.JButton botaoIrTocador;
-    private javax.swing.JButton botaoVoltarConfiguracoes;
-    private javax.swing.JButton botaopausi;
-    private javax.swing.JButton botaoprei;
-    private javax.swing.JButton botaovoltalogo;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JLabel rotulofodase;
-    private javax.swing.JLabel rotuloinstrumento;
-    private javax.swing.JLabel rotulokatiau;
-    private javax.swing.JLabel rotulovolume;
+    private javax.swing.JButton botaoAjudaVoltar;
+    private javax.swing.JButton botaoConfiguracoesVoltar;
+    private javax.swing.JButton botaoEdicaoSalvar;
+    private javax.swing.JButton botaoEdicaoVoltar;
+    private javax.swing.JButton botaoInicialAjuda;
+    private javax.swing.JButton botaoInicialAvancar;
+    private javax.swing.JButton botaoInicialConfiguracoes;
+    private javax.swing.JButton botaoInicialEntrada;
+    private javax.swing.JButton botaoTocadorPause;
+    private javax.swing.JButton botaoTocadorPlay;
+    private javax.swing.JButton botaoTocadorSalvar;
+    private javax.swing.JButton botaoTocadorStop;
+    private javax.swing.JButton botaoTocadorVoltar;
+    private javax.swing.JLabel fundoAjuda;
+    private javax.swing.JLabel fundoConfiguracoes;
+    private javax.swing.JLabel fundoEdicao;
+    private javax.swing.JLabel fundoInicial;
+    private javax.swing.JLabel fundoTocador;
     // End of variables declaration//GEN-END:variables
 }
