@@ -4,7 +4,8 @@ Saloon Music Player:
     	    Nicolas Eymael da Silva
 
 
-Para o funcionamento correto do programa, e necessario a selecao de um dos seguintes metodos:
+Para o funcionamento correto do programa, e necessario a selecao de um dos seguintes
+metodos:
 	> Carregamento de Arquivo;
 	> Digitar a entrada.
 
@@ -14,22 +15,28 @@ Permite-se a alteracao das configuracoes iniciais de:
 	> Instrumento
 	> Ritmo
 Tais alteracoes sao opcionais e definem somente as configuracoes iniciais da musica!
-Quando nao alteradas, o programa utiliza volume, instrumento e ritmo previamente definidos.
+Quando nao alteradas, o programa utiliza volume, instrumento e ritmo previamente
+definidos.
 
 
 Na tela de edicao o usuario tera as seguintes opcoes:
 	> Editar sobre o arquivo selecionado;
 	> Salvar o texto em um arquivo ao seu criterio.
-	> Voltar para a tela inicial. Ao selecionar essa opcao, a edicao ficara guardada a opcao de "Avançar" ser selecionada ou for carregada uma nova entrada.
+	> Voltar para a tela inicial. Ao selecionar essa opcao, a edicao ficara
+guardada a opcao de "Avancar" ser selecionada ou for carregada uma nova entrada.
 
 
 Na tela de reproducao, sera permitido:
 	> Pausar, Parar ou Tocar a musica;
 	> Salvar a musica em um arquivo no formato MIDI.
-	> Voltar para a tela inicial. Ao selecionar essa opcao, o que foi dado como entrada sera mantido. Permitindo ao usuario alterar as configuracoes iniciais de uma mesma musica sem precisar carrega-la novamente.	
+	> Voltar para a tela inicial. Ao selecionar essa opcao, o que foi dado como
+entrada sera mantido. Permitindo ao usuario alterar as configuracoes iniciais de uma
+mesma musica sem precisar carrega-la novamente.	
 
 
-Ao salvar um arquivo, tanto no formato TXT quando MIDI, nao e necessario especificar a extensao ao digitar o nome desejado, pois o software ja salva respeitando o respectivo formato.
+Ao salvar um arquivo, tanto no formato TXT quando MIDI, nao e necessario especificar a
+extensao ao digitar o nome desejado, pois o software ja salva respeitando o respectivo
+formato.
 Se o arquivo ja existe, o mesmo sera sobrescrito.
 
 
@@ -38,5 +45,6 @@ O programa indica erro se:
 
 
 Requisitos de Sistema:
-	> Para o total funcionamento do software, e necessario um dispositivo que suporte a plataforma padrao de Java. Recomenda-se a versao Java 8.
+	> Para o total funcionamento do software, e necessario um dispositivo que
+suporte a plataforma padrao de Java. Recomenda-se a versao Java 8.
  

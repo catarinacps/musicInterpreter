@@ -95,6 +95,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelInicial.add(fundoInicial);
         fundoInicial.setBounds(0, 0, 1024, 768);
 
+        botaoInicialEntrada.setBorder(null);
+        botaoInicialEntrada.setBorderPainted(false);
+        botaoInicialEntrada.setContentAreaFilled(false);
         botaoInicialEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoInicialEntradaActionPerformed(evt);
@@ -103,6 +106,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelInicial.add(botaoInicialEntrada);
         botaoInicialEntrada.setBounds(50, 500, 460, 80);
 
+        botaoInicialAjuda.setBorder(null);
+        botaoInicialAjuda.setBorderPainted(false);
+        botaoInicialAjuda.setContentAreaFilled(false);
         botaoInicialAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoInicialAjudaActionPerformed(evt);
@@ -111,6 +117,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelInicial.add(botaoInicialAjuda);
         botaoInicialAjuda.setBounds(940, 10, 70, 70);
 
+        botaoInicialConfiguracoes.setBorder(null);
+        botaoInicialConfiguracoes.setBorderPainted(false);
+        botaoInicialConfiguracoes.setContentAreaFilled(false);
         botaoInicialConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoInicialConfiguracoesActionPerformed(evt);
@@ -119,6 +128,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelInicial.add(botaoInicialConfiguracoes);
         botaoInicialConfiguracoes.setBounds(50, 660, 460, 70);
 
+        botaoInicialAvancar.setBorder(null);
+        botaoInicialAvancar.setBorderPainted(false);
+        botaoInicialAvancar.setContentAreaFilled(false);
         botaoInicialAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoInicialAvancarActionPerformed(evt);
@@ -139,7 +151,7 @@ public class TelaInterface extends javax.swing.JFrame {
         controleVolume.setToolTipText("Volume Maximo = 127");
         controleVolume.setValue(64);
         PainelConfiguracoes.add(controleVolume);
-        controleVolume.setBounds(320, 80, 640, 100);
+        controleVolume.setBounds(320, 80, 640, 90);
 
         controleInstrumento.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
         controleInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acoustic Grand Piano", "Bright Acoustic Piano", "Electric Grand Piano", "Honkey Tonk Piano", "Electric Piano", "Electric Piano 1", "Electric Piano 2", "Harpischord", "Clavinet", "Celesta", "Glockenspiel", "Music Box", "Vibraphone", "Marimba", "Xylophone", "Tubular Bells", "Dulcimer", "Drawbar Organ", "Percussive Organ", "Rock Organ", "Church Organ", "Reed Organ", "Accordian", "Harmonica", "Tango Accordian", "Nylon String Guitar", "Steel String Guitar", "Electric Jazz Guitar", "Electric Clean Guitar", "Electric Muted Guitar", "Overdriven Guitar", "Distortion Guitar", "Guitar Harmonics", "Acoustic Bass", "Electric Bass Finger", "Electric Bass Pick", "Fretless Bass", "Slap Bass 1", "Slap Bass 2", "Synth Bass 1", "Synth Bass 2", "Violin", "Viola", "Cello", "Contrabass", "Tremolo Strings", "Pizzicato Strings", "Orchestral Strings", "Timpani", "String Ensemble 1", "String Ensemble 2", "Synthstrings 1", "Synthstrings 2", "Choir AAHS", "Voice OOHS", "Synth Voice", "Orchestra Hit", "Trumpet", "Trombone", "Tuba", "Muted Trumpet", "French Horn", "Brass Section", "Synthbrass 1", "Synthbrass 2", "Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax", "Oboe ", "English Horn", "Bassoon", "Clarinet", "Piccolo", "Flute", "Recorder", "Pan Flute", "Blown Bottle", "Skakuhachi", "Whistle ", "Ocarina", "Square", "Sawtooth", "Calliope", "Chiff", "Charang", "Voice", "Fifths", "Basslead", "New Age", "Warm", "Polysynth", "Choir", "Bowed", "Metallic", "Halo", "Sweep", "Rain", "Soundtrack", "Crystal", "Atmosphere", "Brightness", "Goblins", "Echoes", "Sci-Fi", "Sitar", "Banjo", "Shamisen", "Koto", "Kalimba", "Bagpipe", "Fiddle", "Shanai", "Tinkle Bell", "Agogo", "Steel Drums", "Woodblock", "Taiko Drum", "Melodic Tom", "Synth Drum", "Reverse Cymbal", "Guitar Fret Noise", "Breath Noise", "Seashore", "Bird Tweet", "Telephone Ring", "Helicopter", "Applause", "Gunshot" }));
@@ -160,6 +172,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelConfiguracoes.add(fundoConfiguracoes);
         fundoConfiguracoes.setBounds(0, 0, 1024, 768);
 
+        botaoConfiguracoesVoltar.setBorder(null);
+        botaoConfiguracoesVoltar.setBorderPainted(false);
+        botaoConfiguracoesVoltar.setContentAreaFilled(false);
         botaoConfiguracoesVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoConfiguracoesVoltarActionPerformed(evt);
@@ -194,6 +209,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelTocador.add(fundoTocador);
         fundoTocador.setBounds(0, 0, 1024, 768);
 
+        botaoTocadorVoltar.setBorder(null);
+        botaoTocadorVoltar.setBorderPainted(false);
+        botaoTocadorVoltar.setContentAreaFilled(false);
         botaoTocadorVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTocadorVoltarActionPerformed(evt);
@@ -202,6 +220,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelTocador.add(botaoTocadorVoltar);
         botaoTocadorVoltar.setBounds(20, 520, 120, 80);
 
+        botaoTocadorSalvar.setBorder(null);
+        botaoTocadorSalvar.setBorderPainted(false);
+        botaoTocadorSalvar.setContentAreaFilled(false);
         botaoTocadorSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTocadorSalvarActionPerformed(evt);
@@ -210,6 +231,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelTocador.add(botaoTocadorSalvar);
         botaoTocadorSalvar.setBounds(920, 520, 70, 80);
 
+        botaoTocadorStop.setBorder(null);
+        botaoTocadorStop.setBorderPainted(false);
+        botaoTocadorStop.setContentAreaFilled(false);
         botaoTocadorStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTocadorStopActionPerformed(evt);
@@ -218,6 +242,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelTocador.add(botaoTocadorStop);
         botaoTocadorStop.setBounds(150, 630, 130, 130);
 
+        botaoTocadorPause.setBorder(null);
+        botaoTocadorPause.setBorderPainted(false);
+        botaoTocadorPause.setContentAreaFilled(false);
         botaoTocadorPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTocadorPauseActionPerformed(evt);
@@ -226,6 +253,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelTocador.add(botaoTocadorPause);
         botaoTocadorPause.setBounds(440, 630, 140, 130);
 
+        botaoTocadorPlay.setBorder(null);
+        botaoTocadorPlay.setBorderPainted(false);
+        botaoTocadorPlay.setContentAreaFilled(false);
         botaoTocadorPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTocadorPlayActionPerformed(evt);
@@ -257,6 +287,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelEdicao.add(fundoEdicao);
         fundoEdicao.setBounds(0, 0, 1024, 768);
 
+        botaoEdicaoVoltar.setBorder(null);
+        botaoEdicaoVoltar.setBorderPainted(false);
+        botaoEdicaoVoltar.setContentAreaFilled(false);
         botaoEdicaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEdicaoVoltarActionPerformed(evt);
@@ -265,6 +298,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelEdicao.add(botaoEdicaoVoltar);
         botaoEdicaoVoltar.setBounds(40, 660, 130, 70);
 
+        botaoEdicaoSalvar.setBorder(null);
+        botaoEdicaoSalvar.setBorderPainted(false);
+        botaoEdicaoSalvar.setContentAreaFilled(false);
         botaoEdicaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEdicaoSalvarActionPerformed(evt);
@@ -302,6 +338,9 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelAjuda.add(fundoAjuda);
         fundoAjuda.setBounds(0, 0, 1024, 768);
 
+        botaoAjudaVoltar.setBorder(null);
+        botaoAjudaVoltar.setBorderPainted(false);
+        botaoAjudaVoltar.setContentAreaFilled(false);
         botaoAjudaVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAjudaVoltarActionPerformed(evt);
@@ -310,13 +349,16 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelAjuda.add(botaoAjudaVoltar);
         botaoAjudaVoltar.setBounds(40, 660, 130, 70);
 
+        botaoEasterEgg.setBorder(null);
+        botaoEasterEgg.setBorderPainted(false);
+        botaoEasterEgg.setContentAreaFilled(false);
         botaoEasterEgg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEasterEggActionPerformed(evt);
             }
         });
         PainelAjuda.add(botaoEasterEgg);
-        botaoEasterEgg.setBounds(83, 620, 40, 16);
+        botaoEasterEgg.setBounds(83, 620, 40, 1);
 
         PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
@@ -344,7 +386,7 @@ public class TelaInterface extends javax.swing.JFrame {
         else{
             novaMusica = new Musica(textoEdicao.getText(), controleVolume.getValue(), controleInstrumento.getSelectedIndex(), controleRitmo.getSelectedIndex());
             textoTocador.setText(novaMusica.pegaNotas());
-            
+            textoTocador.setCaretPosition(0);
             
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoTocador");
@@ -485,15 +527,9 @@ public class TelaInterface extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-               
-               //javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            }
+        try {           
+            javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
