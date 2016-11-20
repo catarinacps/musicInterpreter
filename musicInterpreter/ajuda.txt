@@ -1,30 +1,42 @@
 Saloon Music Player:
-	by Luis Miguel Santos Batista
+	by  Luis Miguel Santos Batista
 	    Henrique Correa Pereira da Silva
     	    Nicolas Eymael da Silva
 
 
-Para o funcionamento correto do programa, e necessario a selecao de um dos seguintes
-metodos:
-	Carregamento de Arquivo;
-	Digitar a entrada.
+Para o funcionamento correto do programa, e necessario a selecao de um dos seguintes metodos:
+	> Carregamento de Arquivo;
+	> Digitar a entrada.
 
 
-Em seguida, o usuario tem as seguintes opcoes:
-	Editar sobre o arquivo selecionado;
-	Salvar o texto em um arquivo ao seu criterio;
-	Voltar para a tela inicial.
+Permite-se a alteracao das configuracoes iniciais de:
+	> Volume
+	> Instrumento
+	> Ritmo
+Tais alteracoes sao opcionais e definem somente as configuracoes iniciais da musica!
+Quando nao alteradas, o programa utiliza volume, instrumento e ritmo previamente definidos.
 
 
-Depois de realizadas as operacoes sobre o arquivo, agora o usuario podera voltar a tela
-inicial para entao selecionar a opcao de Avancar e ouvir as notas tocando.
+Na tela de edicao o usuario tera as seguintes opcoes:
+	> Editar sobre o arquivo selecionado;
+	> Salvar o texto em um arquivo ao seu criterio.
+	> Voltar para a tela inicial. Ao selecionar essa opcao, a edicao ficara guardada a opcao de "Avançar" ser selecionada ou for carregada uma nova entrada.
 
 
 Na tela de reproducao, sera permitido:
-	Pausar, Parar ou Tocar a musica;
-	Salvar a musica em um arquivo no formato MIDI;
-	Voltar para a tela inicial.
+	> Pausar, Parar ou Tocar a musica;
+	> Salvar a musica em um arquivo no formato MIDI.
+	> Voltar para a tela inicial. Ao selecionar essa opcao, o que foi dado como entrada sera mantido. Permitindo ao usuario alterar as configuracoes iniciais de uma mesma musica sem precisar carrega-la novamente.	
 
 
-O programa indicara erro se:
-	A opcao Avancar for selecionada sem existir uma entrada.
+Ao salvar um arquivo, tanto no formato TXT quando MIDI, nao e necessario especificar a extensao ao digitar o nome desejado, pois o software ja salva respeitando o respectivo formato.
+Se o arquivo ja existe, o mesmo sera sobrescrito.
+
+
+O programa indica erro se:
+	> A opcao "Avancar" for selecionada sem existir uma entrada.
+
+
+Requisitos de Sistema:
+	> Para o total funcionamento do software, e necessario um dispositivo que suporte a plataforma padrao de Java. Recomenda-se a versao Java 8.
+ 
