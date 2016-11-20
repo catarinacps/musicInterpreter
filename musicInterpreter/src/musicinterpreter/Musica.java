@@ -20,10 +20,10 @@ import org.jfugue.player.Player;
  */
 public class Musica {
     private String notas;
+	private Player tocador;
+	private ManagedPlayer tocadorControlado;
 
 	static final int OITAVA_PADRAO = 5;
-        static final int VOLUME_PADRAO = 64;
-        static final int INSTRUMENTO_PADRAO = 0;
 	static final int NUMERO_DE_INSTRUMENTOS = 127;
 	static final int VOLUME_MAXIMO = 127;
 	static final int ULTIMA_OITAVA = 9;
@@ -46,17 +46,35 @@ public class Musica {
 	------------------------------------------------------------------------------------------------------------------------
 	*/
 
-    public Musica(String entradaTexto){
-        DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto);
+    public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, float ritmoInicial){
+        DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto, volumeInicial, instrumentoInicial, ritmoInicial);
         this.notas = decodificador.pegaSaida();
+
+		this.tocador = new Player();
+		this.tocadorControlado = new ManagedPlayer();
     }
 
 	public void tocaMusica() throws InvalidMidiDataException, MidiUnavailableException{
-		Player tocador = new Player();
-		ManagedPlayer tocadorControlado = new ManagedPlayer();
-
-		tocadorControlado.start(tocador.getSequence(this.notas));
+		this.tocadorControlado.start(this.tocador.getSequence(this.notas));
 		//implementar dps pause, stop e resume (junto com a interface tlg)
+	}
+
+	public void pausaMusica(){
+		if(this.tocadorControlado.isPlaying()){
+			this.tocadorControlado.pause();
+		}
+	}
+
+	public void resumeMusica(){
+		if(this.tocadorControlado.isPaused()){
+			this.tocadorControlado.resume();
+		}
+	}
+
+	public void paraMusica(){
+		if(this.tocadorControlado.isPaused() || this.tocadorControlado.isPlaying()){
+			this.tocadorControlado.finish();
+		}
 	}
 
 	public String pegaNotas(){
@@ -70,5 +88,5 @@ public class Musica {
 		//implementar na interface pro cara escolher o nome tlg
 	}
 
-	
+
 }

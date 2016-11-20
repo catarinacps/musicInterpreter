@@ -10,30 +10,28 @@ package musicinterpreter;
  * @author Admin
  */
 public class DecodificadorTexto {
-    
+
     static final int OITAVA_PADRAO = 5;
-    static final int VOLUME_PADRAO = 64;
-    static final int INSTRUMENTO_PADRAO = 1;
     static final int NUMERO_DE_INSTRUMENTOS = 127;
     static final int VOLUME_MAXIMO = 127;
     static final int ULTIMA_OITAVA = 9;
-    
+
     private String saidaDecodificada;
-    
-    public DecodificadorTexto(String entradaTexto){
-        this.saidaDecodificada = decodificaArquivo(entradaTexto);
+
+    public DecodificadorTexto(String entradaTexto, int volumeInicial, int instrumentoInicial, float ritmoInicial){
+        this.saidaDecodificada = decodificaArquivo(entradaTexto, volumeInicial, instrumentoInicial, ritmoInicial);
     }
-    
+
     public String pegaSaida(){
 		return this.saidaDecodificada;
 	}
-    
-    public String decodificaArquivo(String entradaTexto){
+
+    public String decodificaArquivo(String entradaTexto, int volumeInicial, int instrumentoInicial, float ritmoInicial){
 		String stringAuxiliar = "";
 		Nota notaTocada = null;
 		int oitavaAtual = OITAVA_PADRAO;
-		int volumeAtual = VOLUME_PADRAO;
-		int instrumentoAtual = INSTRUMENTO_PADRAO;
+		int volumeAtual = volumeInicial;
+		int instrumentoAtual = instrumentoInicial;
 		int i = 0;
 
 		char[] entradaEmCaracteres = entradaTexto.toCharArray();
@@ -52,20 +50,20 @@ public class DecodificadorTexto {
 			}
 			else if (testeNota(entradaEmCaracteres[i])){
 				notaTocada = new Nota(entradaEmCaracteres[i], oitavaAtual, volumeAtual);
-				stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
+				stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + '/' + Float.toString(ritmoInicial) + " ";
 
 			}
 			else{ // nenhum dos caracteres anteriores, entao repetir a nota anterior ou fazer uma pausa
 				try{
 					if (testeNota(entradaEmCaracteres[i-1])){
-						stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
+						stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + '/' + Float.toString(ritmoInicial) + " ";
 					}
 					else{
-						stringAuxiliar += "R ";
+						stringAuxiliar += "R" + '/' + Float.toString(ritmoInicial) + " ";
 					}
 				}
 				catch(IndexOutOfBoundsException erroLimiteArray){
-					stringAuxiliar += "R ";
+					stringAuxiliar += "R" + '/' + Float.toString(ritmoInicial) + " ";
 				}
 			}
 		}
@@ -148,5 +146,5 @@ public class DecodificadorTexto {
 		}
 		return false;
 	}
-    
+
 }

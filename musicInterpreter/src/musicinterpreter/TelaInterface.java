@@ -23,7 +23,7 @@ import javax.swing.UIManager;
  * @author Admin
  */
 public class TelaInterface extends javax.swing.JFrame {
-
+    private Musica novaMusica;
     /**
      * Creates new form TelaInterface
      */
@@ -312,7 +312,7 @@ public class TelaInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
         } 
         else{
-            Musica novaMusica = new Musica(textoEdicao.getText());
+            novaMusica = new Musica(textoEdicao.getText());
             textoTocador.setText(novaMusica.pegaNotas());
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoTocador");
@@ -390,7 +390,6 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
     private void botaoTocadorPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPlayActionPerformed
-        Musica novaMusica = new Musica(textoEdicao.getText());
         try {
             novaMusica.tocaMusica();
         } catch (InvalidMidiDataException ex) {
