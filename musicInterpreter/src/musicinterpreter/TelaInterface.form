@@ -3,12 +3,16 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Saloon Music Player"/>
     <Property name="name" type="java.lang.String" value="FramePrincipal" noResource="true"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1024, 797]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
@@ -67,6 +71,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="botaoInicialEntrada">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoInicialEntradaActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="50" y="500" width="460" height="80"/>
@@ -116,6 +123,172 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JSlider" name="controleVolume">
+              <Properties>
+                <Property name="majorTickSpacing" type="int" value="10"/>
+                <Property name="maximum" type="int" value="127"/>
+                <Property name="minorTickSpacing" type="int" value="10"/>
+                <Property name="paintTicks" type="boolean" value="true"/>
+                <Property name="value" type="int" value="64"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="310" y="80" width="660" height="100"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="controleInstrumento">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Gothic UI Semilight" size="24" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="129">
+                    <StringItem index="0" value="Acoustic Grand Piano"/>
+                    <StringItem index="1" value="Bright Acoustic Piano"/>
+                    <StringItem index="2" value="Electric Grand Piano"/>
+                    <StringItem index="3" value="Honkey Tonk Piano"/>
+                    <StringItem index="4" value="Electric Piano"/>
+                    <StringItem index="5" value="Electric Piano 1"/>
+                    <StringItem index="6" value="Electric Piano 2"/>
+                    <StringItem index="7" value="Harpischord"/>
+                    <StringItem index="8" value="Clavinet"/>
+                    <StringItem index="9" value="Celesta"/>
+                    <StringItem index="10" value="Glockenspiel"/>
+                    <StringItem index="11" value="Music Box"/>
+                    <StringItem index="12" value="Vibraphone"/>
+                    <StringItem index="13" value="Marimba"/>
+                    <StringItem index="14" value="Xylophone"/>
+                    <StringItem index="15" value="Tubular Bells"/>
+                    <StringItem index="16" value="Dulcimer"/>
+                    <StringItem index="17" value="Drawbar Organ"/>
+                    <StringItem index="18" value="Percussive Organ"/>
+                    <StringItem index="19" value="Rock Organ"/>
+                    <StringItem index="20" value="Church Organ"/>
+                    <StringItem index="21" value="Reed Organ"/>
+                    <StringItem index="22" value="Accordian"/>
+                    <StringItem index="23" value="Harmonica"/>
+                    <StringItem index="24" value="Tango Accordian"/>
+                    <StringItem index="25" value="Nylon String Guitar"/>
+                    <StringItem index="26" value="Steel String Guitar"/>
+                    <StringItem index="27" value="Electric Jazz Guitar"/>
+                    <StringItem index="28" value="Electric Clean Guitar"/>
+                    <StringItem index="29" value="Electric Muted Guitar"/>
+                    <StringItem index="30" value="Overdriven Guitar"/>
+                    <StringItem index="31" value="Distortion Guitar"/>
+                    <StringItem index="32" value="Guitar Harmonics"/>
+                    <StringItem index="33" value="Acoustic Bass"/>
+                    <StringItem index="34" value="Electric Bass Finger"/>
+                    <StringItem index="35" value="Electric Bass Pick"/>
+                    <StringItem index="36" value="Fretless Bass"/>
+                    <StringItem index="37" value="Slap Bass 1"/>
+                    <StringItem index="38" value="Slap Bass 2"/>
+                    <StringItem index="39" value="Synth Bass 1"/>
+                    <StringItem index="40" value="Synth Bass 2"/>
+                    <StringItem index="41" value="Violin"/>
+                    <StringItem index="42" value="Viola"/>
+                    <StringItem index="43" value="Cello"/>
+                    <StringItem index="44" value="Contrabass"/>
+                    <StringItem index="45" value="Tremolo Strings"/>
+                    <StringItem index="46" value="Pizzicato Strings"/>
+                    <StringItem index="47" value="Orchestral Strings"/>
+                    <StringItem index="48" value="Timpani"/>
+                    <StringItem index="49" value="String Ensemble 1"/>
+                    <StringItem index="50" value="String Ensemble 2"/>
+                    <StringItem index="51" value="Synthstrings 1"/>
+                    <StringItem index="52" value="Synthstrings 2"/>
+                    <StringItem index="53" value="Choir AAHS"/>
+                    <StringItem index="54" value="Voice OOHS"/>
+                    <StringItem index="55" value="Synth Voice"/>
+                    <StringItem index="56" value="Orchestra Hit"/>
+                    <StringItem index="57" value="Trumpet"/>
+                    <StringItem index="58" value="Trombone"/>
+                    <StringItem index="59" value="Tuba"/>
+                    <StringItem index="60" value="Muted Trumpet"/>
+                    <StringItem index="61" value="French Horn"/>
+                    <StringItem index="62" value="Brass Section"/>
+                    <StringItem index="63" value="Synthbrass 1"/>
+                    <StringItem index="64" value="Synthbrass 2"/>
+                    <StringItem index="65" value="Soprano Sax"/>
+                    <StringItem index="66" value="Alto Sax"/>
+                    <StringItem index="67" value="Tenor Sax"/>
+                    <StringItem index="68" value="Baritone Sax"/>
+                    <StringItem index="69" value="Oboe "/>
+                    <StringItem index="70" value="English Horn"/>
+                    <StringItem index="71" value="Bassoon"/>
+                    <StringItem index="72" value="Clarinet"/>
+                    <StringItem index="73" value="Piccolo"/>
+                    <StringItem index="74" value="Flute"/>
+                    <StringItem index="75" value="Recorder"/>
+                    <StringItem index="76" value="Pan Flute"/>
+                    <StringItem index="77" value="Blown Bottle"/>
+                    <StringItem index="78" value="Skakuhachi"/>
+                    <StringItem index="79" value="Whistle "/>
+                    <StringItem index="80" value="Ocarina"/>
+                    <StringItem index="81" value="Square"/>
+                    <StringItem index="82" value="Sawtooth"/>
+                    <StringItem index="83" value="Calliope"/>
+                    <StringItem index="84" value="Chiff"/>
+                    <StringItem index="85" value="Charang"/>
+                    <StringItem index="86" value="Voice"/>
+                    <StringItem index="87" value="Fifths"/>
+                    <StringItem index="88" value="Basslead"/>
+                    <StringItem index="89" value="New Age"/>
+                    <StringItem index="90" value="Warm"/>
+                    <StringItem index="91" value="Polysynth"/>
+                    <StringItem index="92" value="Choir"/>
+                    <StringItem index="93" value="Bowed"/>
+                    <StringItem index="94" value="Metallic"/>
+                    <StringItem index="95" value="Halo"/>
+                    <StringItem index="96" value="Sweep"/>
+                    <StringItem index="97" value="Rain"/>
+                    <StringItem index="98" value="Soundtrack"/>
+                    <StringItem index="99" value="Crystal"/>
+                    <StringItem index="100" value="Atmosphere"/>
+                    <StringItem index="101" value="Brightness"/>
+                    <StringItem index="102" value="Goblins"/>
+                    <StringItem index="103" value="Echoes"/>
+                    <StringItem index="104" value="Sci-Fi"/>
+                    <StringItem index="105" value="Sitar"/>
+                    <StringItem index="106" value="Banjo"/>
+                    <StringItem index="107" value="Shamisen"/>
+                    <StringItem index="108" value="Koto"/>
+                    <StringItem index="109" value="Kalimba"/>
+                    <StringItem index="110" value="Bagpipe"/>
+                    <StringItem index="111" value="Fiddle"/>
+                    <StringItem index="112" value="Shanai"/>
+                    <StringItem index="113" value="Tinkle Bell"/>
+                    <StringItem index="114" value="Agogo"/>
+                    <StringItem index="115" value="Steel Drums"/>
+                    <StringItem index="116" value="Woodblock"/>
+                    <StringItem index="117" value="Taiko Drum"/>
+                    <StringItem index="118" value="Melodic Tom"/>
+                    <StringItem index="119" value="Synth Drum"/>
+                    <StringItem index="120" value="Reverse Cymbal"/>
+                    <StringItem index="121" value="Guitar Fret Noise"/>
+                    <StringItem index="122" value="Breath Noise"/>
+                    <StringItem index="123" value="Seashore"/>
+                    <StringItem index="124" value="Bird Tweet"/>
+                    <StringItem index="125" value="Telephone Ring"/>
+                    <StringItem index="126" value="Helicopter"/>
+                    <StringItem index="127" value="Applause"/>
+                    <StringItem index="128" value="Gunshot"/>
+                  </StringArray>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="446" y="260" width="530" height="110"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Component class="javax.swing.JLabel" name="fundoConfiguracoes">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -215,6 +388,45 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="30" y="20" width="970" height="570"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="textoEdicao">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Yu Gothic UI Semilight" size="24" style="0"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor de Texto"/>
+                    </Property>
+                    <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="null"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
             <Component class="javax.swing.JLabel" name="fundoEdicao">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -238,6 +450,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="botaoEdicaoSalvar">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEdicaoSalvarActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="390" y="660" width="80" height="70"/>
@@ -257,6 +472,57 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="30" y="20" width="970" height="570"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="textoAjuda">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Yu Gothic UI Semilight" size="24" style="0"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="EasterEgg">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Gothic UI Semilight" size="48" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="MIM"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="560" y="650" width="190" height="80"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Component class="javax.swing.JLabel" name="fundoAjuda">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -276,6 +542,16 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="40" y="660" width="130" height="70"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoEasterEgg">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEasterEggActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="83" y="620" width="40" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

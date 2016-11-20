@@ -1,0 +1,30 @@
+Saloon Music Player:
+	by Luis Miguel Santos Batista
+	    Henrique Correa Pereira da Silva
+    	    Nicolas Eymael da Silva
+
+
+Para o funcionamento correto do programa, e necessario a selecao de um dos seguintes
+metodos:
+	Carregamento de Arquivo;
+	Digitar a entrada.
+
+
+Em seguida, o usuario tem as seguintes opcoes:
+	Editar sobre o arquivo selecionado;
+	Salvar o texto em um arquivo ao seu criterio;
+	Voltar para a tela inicial.
+
+
+Depois de realizadas as operacoes sobre o arquivo, agora o usuario podera voltar a tela
+inicial para entao selecionar a opcao de Avancar e ouvir as notas tocando.
+
+
+Na tela de reproducao, sera permitido:
+	Pausar, Parar ou Tocar a musica;
+	Salvar a musica em um arquivo no formato MIDI;
+	Voltar para a tela inicial.
+
+
+O programa indicara erro se:
+	A opcao Avancar for selecionada sem existir uma entrada.

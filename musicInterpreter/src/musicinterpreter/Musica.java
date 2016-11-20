@@ -22,8 +22,8 @@ public class Musica {
     private String notas;
 
 	static final int OITAVA_PADRAO = 5;
-    static final int VOLUME_PADRAO = 64;
-    static final int INSTRUMENTO_PADRAO = 1;
+        static final int VOLUME_PADRAO = 64;
+        static final int INSTRUMENTO_PADRAO = 0;
 	static final int NUMERO_DE_INSTRUMENTOS = 127;
 	static final int VOLUME_MAXIMO = 127;
 	static final int ULTIMA_OITAVA = 9;

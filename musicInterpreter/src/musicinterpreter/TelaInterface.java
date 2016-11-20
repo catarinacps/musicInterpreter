@@ -7,11 +7,16 @@ package musicinterpreter;
 
 import java.awt.CardLayout;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
+import javax.swing.Icon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -24,7 +29,7 @@ public class TelaInterface extends javax.swing.JFrame {
      */
     public TelaInterface() {
         initComponents();
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/hue.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeMcCree.png")));
     }
 
     /**
@@ -44,6 +49,8 @@ public class TelaInterface extends javax.swing.JFrame {
         botaoInicialConfiguracoes = new javax.swing.JButton();
         botaoInicialAvancar = new javax.swing.JButton();
         PainelConfiguracoes = new javax.swing.JPanel();
+        controleVolume = new javax.swing.JSlider();
+        controleInstrumento = new javax.swing.JComboBox<>();
         fundoConfiguracoes = new javax.swing.JLabel();
         botaoConfiguracoesVoltar = new javax.swing.JButton();
         PainelTocador = new javax.swing.JPanel();
@@ -54,14 +61,21 @@ public class TelaInterface extends javax.swing.JFrame {
         botaoTocadorPause = new javax.swing.JButton();
         botaoTocadorPlay = new javax.swing.JButton();
         PainelEdicao = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoEdicao = new javax.swing.JTextArea();
         fundoEdicao = new javax.swing.JLabel();
         botaoEdicaoVoltar = new javax.swing.JButton();
         botaoEdicaoSalvar = new javax.swing.JButton();
         PainelAjuda = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoAjuda = new javax.swing.JTextArea();
+        EasterEgg = new javax.swing.JLabel();
         fundoAjuda = new javax.swing.JLabel();
         botaoAjudaVoltar = new javax.swing.JButton();
+        botaoEasterEgg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Saloon Music Player");
         setName("FramePrincipal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1024, 797));
         setResizable(false);
@@ -74,6 +88,12 @@ public class TelaInterface extends javax.swing.JFrame {
         fundoInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telainicialsla.png"))); // NOI18N
         PainelInicial.add(fundoInicial);
         fundoInicial.setBounds(0, 0, 1024, 768);
+
+        botaoInicialEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoInicialEntradaActionPerformed(evt);
+            }
+        });
         PainelInicial.add(botaoInicialEntrada);
         botaoInicialEntrada.setBounds(50, 500, 460, 80);
 
@@ -104,6 +124,21 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelPrincipal.add(PainelInicial, "cartaoInicial");
 
         PainelConfiguracoes.setLayout(null);
+
+        controleVolume.setMajorTickSpacing(10);
+        controleVolume.setMaximum(127);
+        controleVolume.setMinorTickSpacing(10);
+        controleVolume.setPaintTicks(true);
+        controleVolume.setValue(64);
+        PainelConfiguracoes.add(controleVolume);
+        controleVolume.setBounds(310, 80, 660, 100);
+
+        controleInstrumento.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        controleInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acoustic Grand Piano", "Bright Acoustic Piano", "Electric Grand Piano", "Honkey Tonk Piano", "Electric Piano", "Electric Piano 1", "Electric Piano 2", "Harpischord", "Clavinet", "Celesta", "Glockenspiel", "Music Box", "Vibraphone", "Marimba", "Xylophone", "Tubular Bells", "Dulcimer", "Drawbar Organ", "Percussive Organ", "Rock Organ", "Church Organ", "Reed Organ", "Accordian", "Harmonica", "Tango Accordian", "Nylon String Guitar", "Steel String Guitar", "Electric Jazz Guitar", "Electric Clean Guitar", "Electric Muted Guitar", "Overdriven Guitar", "Distortion Guitar", "Guitar Harmonics", "Acoustic Bass", "Electric Bass Finger", "Electric Bass Pick", "Fretless Bass", "Slap Bass 1", "Slap Bass 2", "Synth Bass 1", "Synth Bass 2", "Violin", "Viola", "Cello", "Contrabass", "Tremolo Strings", "Pizzicato Strings", "Orchestral Strings", "Timpani", "String Ensemble 1", "String Ensemble 2", "Synthstrings 1", "Synthstrings 2", "Choir AAHS", "Voice OOHS", "Synth Voice", "Orchestra Hit", "Trumpet", "Trombone", "Tuba", "Muted Trumpet", "French Horn", "Brass Section", "Synthbrass 1", "Synthbrass 2", "Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax", "Oboe ", "English Horn", "Bassoon", "Clarinet", "Piccolo", "Flute", "Recorder", "Pan Flute", "Blown Bottle", "Skakuhachi", "Whistle ", "Ocarina", "Square", "Sawtooth", "Calliope", "Chiff", "Charang", "Voice", "Fifths", "Basslead", "New Age", "Warm", "Polysynth", "Choir", "Bowed", "Metallic", "Halo", "Sweep", "Rain", "Soundtrack", "Crystal", "Atmosphere", "Brightness", "Goblins", "Echoes", "Sci-Fi", "Sitar", "Banjo", "Shamisen", "Koto", "Kalimba", "Bagpipe", "Fiddle", "Shanai", "Tinkle Bell", "Agogo", "Steel Drums", "Woodblock", "Taiko Drum", "Melodic Tom", "Synth Drum", "Reverse Cymbal", "Guitar Fret Noise", "Breath Noise", "Seashore", "Bird Tweet", "Telephone Ring", "Helicopter", "Applause", "Gunshot" }));
+        controleInstrumento.setToolTipText("");
+        controleInstrumento.setBorder(null);
+        PainelConfiguracoes.add(controleInstrumento);
+        controleInstrumento.setBounds(446, 260, 530, 110);
 
         fundoConfiguracoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fundoConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/configuracoes.png"))); // NOI18N
@@ -146,6 +181,21 @@ public class TelaInterface extends javax.swing.JFrame {
 
         PainelEdicao.setLayout(null);
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        textoEdicao.setColumns(20);
+        textoEdicao.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        textoEdicao.setLineWrap(true);
+        textoEdicao.setRows(5);
+        textoEdicao.setBorder(null);
+        textoEdicao.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textoEdicao.setHighlighter(null);
+        jScrollPane1.setViewportView(textoEdicao);
+
+        PainelEdicao.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 20, 970, 570);
+
         fundoEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaedicao.png"))); // NOI18N
         PainelEdicao.add(fundoEdicao);
         fundoEdicao.setBounds(0, 0, 1024, 768);
@@ -157,12 +207,39 @@ public class TelaInterface extends javax.swing.JFrame {
         });
         PainelEdicao.add(botaoEdicaoVoltar);
         botaoEdicaoVoltar.setBounds(40, 660, 130, 70);
+
+        botaoEdicaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEdicaoSalvarActionPerformed(evt);
+            }
+        });
         PainelEdicao.add(botaoEdicaoSalvar);
         botaoEdicaoSalvar.setBounds(390, 660, 80, 70);
 
         PainelPrincipal.add(PainelEdicao, "cartaoEdicao");
 
         PainelAjuda.setLayout(null);
+
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        textoAjuda.setEditable(false);
+        textoAjuda.setColumns(20);
+        textoAjuda.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        textoAjuda.setLineWrap(true);
+        textoAjuda.setRows(5);
+        textoAjuda.setBorder(null);
+        jScrollPane2.setViewportView(textoAjuda);
+
+        PainelAjuda.add(jScrollPane2);
+        jScrollPane2.setBounds(30, 20, 970, 570);
+
+        EasterEgg.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 48)); // NOI18N
+        EasterEgg.setForeground(new java.awt.Color(255, 255, 153));
+        EasterEgg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EasterEgg.setText("MIM");
+        PainelAjuda.add(EasterEgg);
+        EasterEgg.setBounds(560, 650, 190, 80);
 
         fundoAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaajuda.png"))); // NOI18N
         PainelAjuda.add(fundoAjuda);
@@ -175,6 +252,14 @@ public class TelaInterface extends javax.swing.JFrame {
         });
         PainelAjuda.add(botaoAjudaVoltar);
         botaoAjudaVoltar.setBounds(40, 660, 130, 70);
+
+        botaoEasterEgg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEasterEggActionPerformed(evt);
+            }
+        });
+        PainelAjuda.add(botaoEasterEgg);
+        botaoEasterEgg.setBounds(83, 620, 40, 9);
 
         PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
@@ -189,16 +274,27 @@ public class TelaInterface extends javax.swing.JFrame {
             .addComponent(PainelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        getAccessibleContext().setAccessibleDescription("");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoInicialAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAvancarActionPerformed
-        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
-        cartao.show(PainelPrincipal, "cartaoTocador");
+        if (textoEdicao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
+        } 
+        else{
+            CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+            cartao.show(PainelPrincipal, "cartaoTocador");
+        }
     }//GEN-LAST:event_botaoInicialAvancarActionPerformed
 
     private void botaoInicialAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAjudaActionPerformed
+        String ajudatxt = LeitorArquivo.leArquivo("ajuda.txt");
+        textoAjuda.setText(ajudatxt);
+        textoAjuda.setCaretPosition(0);  // colocar scroll no topo
+        EasterEgg.setVisible(false);  
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoAjuda");
     }//GEN-LAST:event_botaoInicialAjudaActionPerformed
@@ -228,6 +324,40 @@ public class TelaInterface extends javax.swing.JFrame {
         cartao.show(PainelPrincipal, "cartaoInicial");
     }//GEN-LAST:event_botaoAjudaVoltarActionPerformed
 
+    private void botaoInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialEntradaActionPerformed
+        Object[] opcoesTexto = { "Arquivo", "Texto" };
+        Integer opcaoEntrada = JOptionPane.showOptionDialog(this,"Selecione o modo de entrada:","Entrada",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,opcoesTexto,opcoesTexto[0]);
+        if (opcaoEntrada == 0){ // escolher a primeira opçao, ou seja "Arquivo"
+            JFileChooser seletorArquivo = new JFileChooser();
+            seletorArquivo.showOpenDialog(this);
+            File arquivoEntrada = seletorArquivo.getSelectedFile();
+            String caminhoArquivo = arquivoEntrada.getAbsolutePath();
+            String nomeArquivo = arquivoEntrada.getName();
+            
+            String entradaLida = LeitorArquivo.leArquivo(caminhoArquivo);
+            textoEdicao.setText(entradaLida);
+            textoEdicao.setCaretPosition(0);
+            CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+            cartao.show(PainelPrincipal, "cartaoEdicao");
+            
+        }
+        else if (opcaoEntrada == 1){ // escolher a segunda opcao, ou seja "Texto"
+            textoEdicao.setText("");
+            textoEdicao.setCaretPosition(0);
+            CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+            cartao.show(PainelPrincipal, "cartaoEdicao");
+        }
+       
+    }//GEN-LAST:event_botaoInicialEntradaActionPerformed
+
+    private void botaoEasterEggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEasterEggActionPerformed
+         EasterEgg.setVisible(true);
+    }//GEN-LAST:event_botaoEasterEggActionPerformed
+
+    private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
+        
+    }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +373,8 @@ public class TelaInterface extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
+               
+               //javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -254,6 +386,9 @@ public class TelaInterface extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -264,6 +399,7 @@ public class TelaInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel EasterEgg;
     private javax.swing.JPanel PainelAjuda;
     private javax.swing.JPanel PainelConfiguracoes;
     private javax.swing.JPanel PainelEdicao;
@@ -272,6 +408,7 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTocador;
     private javax.swing.JButton botaoAjudaVoltar;
     private javax.swing.JButton botaoConfiguracoesVoltar;
+    private javax.swing.JButton botaoEasterEgg;
     private javax.swing.JButton botaoEdicaoSalvar;
     private javax.swing.JButton botaoEdicaoVoltar;
     private javax.swing.JButton botaoInicialAjuda;
@@ -283,10 +420,16 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JButton botaoTocadorSalvar;
     private javax.swing.JButton botaoTocadorStop;
     private javax.swing.JButton botaoTocadorVoltar;
+    private javax.swing.JComboBox<String> controleInstrumento;
+    private javax.swing.JSlider controleVolume;
     private javax.swing.JLabel fundoAjuda;
     private javax.swing.JLabel fundoConfiguracoes;
     private javax.swing.JLabel fundoEdicao;
     private javax.swing.JLabel fundoInicial;
     private javax.swing.JLabel fundoTocador;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea textoAjuda;
+    private javax.swing.JTextArea textoEdicao;
     // End of variables declaration//GEN-END:variables
 }

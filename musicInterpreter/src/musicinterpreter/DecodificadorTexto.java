@@ -95,7 +95,7 @@ public class DecodificadorTexto {
 	private int alteraInstrumento(char caracterLido, int instrumentoAtual){
 		switch(caracterLido){
 			case '!':
-				return 7; //Harpsichord
+				return 7; //Harpischord
 			case '\n':
 				return 15; //Tubular Bells
 			case ';':
