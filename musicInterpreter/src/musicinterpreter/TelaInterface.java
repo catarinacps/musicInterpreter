@@ -54,6 +54,9 @@ public class TelaInterface extends javax.swing.JFrame {
         fundoConfiguracoes = new javax.swing.JLabel();
         botaoConfiguracoesVoltar = new javax.swing.JButton();
         PainelTocador = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textoTocador = new javax.swing.JTextArea();
+        nomeArquivo = new javax.swing.JLabel();
         fundoTocador = new javax.swing.JLabel();
         botaoTocadorVoltar = new javax.swing.JButton();
         botaoTocadorSalvar = new javax.swing.JButton();
@@ -157,6 +160,24 @@ public class TelaInterface extends javax.swing.JFrame {
 
         PainelTocador.setLayout(null);
 
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        textoTocador.setColumns(20);
+        textoTocador.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        textoTocador.setLineWrap(true);
+        textoTocador.setRows(5);
+        textoTocador.setBorder(null);
+        jScrollPane3.setViewportView(textoTocador);
+
+        PainelTocador.add(jScrollPane3);
+        jScrollPane3.setBounds(30, 30, 960, 460);
+
+        nomeArquivo.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 36)); // NOI18N
+        nomeArquivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PainelTocador.add(nomeArquivo);
+        nomeArquivo.setBounds(170, 530, 740, 50);
+
         fundoTocador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaplay.png"))); // NOI18N
         PainelTocador.add(fundoTocador);
         fundoTocador.setBounds(0, 0, 1024, 768);
@@ -174,6 +195,12 @@ public class TelaInterface extends javax.swing.JFrame {
         botaoTocadorStop.setBounds(150, 630, 130, 130);
         PainelTocador.add(botaoTocadorPause);
         botaoTocadorPause.setBounds(440, 630, 140, 130);
+
+        botaoTocadorPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTocadorPlayActionPerformed(evt);
+            }
+        });
         PainelTocador.add(botaoTocadorPlay);
         botaoTocadorPlay.setBounds(740, 630, 130, 130);
 
@@ -285,6 +312,8 @@ public class TelaInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
         } 
         else{
+            Musica novaMusica = new Musica(textoEdicao.getText());
+            textoTocador.setText(novaMusica.pegaNotas());
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoTocador");
         }
@@ -329,18 +358,20 @@ public class TelaInterface extends javax.swing.JFrame {
         Integer opcaoEntrada = JOptionPane.showOptionDialog(this,"Selecione o modo de entrada:","Entrada",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,opcoesTexto,opcoesTexto[0]);
         if (opcaoEntrada == 0){ // escolher a primeira opçao, ou seja "Arquivo"
             JFileChooser seletorArquivo = new JFileChooser();
-            seletorArquivo.showOpenDialog(this);
-            File arquivoEntrada = seletorArquivo.getSelectedFile();
-            String caminhoArquivo = arquivoEntrada.getAbsolutePath();
-            String nomeArquivo = arquivoEntrada.getName();
-            
-            String entradaLida = LeitorArquivo.leArquivo(caminhoArquivo);
-            textoEdicao.setText(entradaLida);
-            textoEdicao.setCaretPosition(0);
-            CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
-            cartao.show(PainelPrincipal, "cartaoEdicao");
-            
+            int foiSelecionado = seletorArquivo.showOpenDialog(this);
+            if(foiSelecionado == JFileChooser.APPROVE_OPTION){
+                File arquivoEntrada = seletorArquivo.getSelectedFile();
+                String caminhoArquivo = arquivoEntrada.getAbsolutePath();
+                nomeArquivo.setText(arquivoEntrada.getName());
+
+                String entradaLida = LeitorArquivo.leArquivo(caminhoArquivo);
+                textoEdicao.setText(entradaLida);
+                textoEdicao.setCaretPosition(0);
+                CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+                cartao.show(PainelPrincipal, "cartaoEdicao");
+            }
         }
+            
         else if (opcaoEntrada == 1){ // escolher a segunda opcao, ou seja "Texto"
             textoEdicao.setText("");
             textoEdicao.setCaretPosition(0);
@@ -357,6 +388,17 @@ public class TelaInterface extends javax.swing.JFrame {
     private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
         
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
+
+    private void botaoTocadorPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPlayActionPerformed
+        Musica novaMusica = new Musica(textoEdicao.getText());
+        try {
+            novaMusica.tocaMusica();
+        } catch (InvalidMidiDataException ex) {
+            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MidiUnavailableException ex) {
+            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_botaoTocadorPlayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,7 +471,10 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JLabel fundoTocador;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel nomeArquivo;
     private javax.swing.JTextArea textoAjuda;
     private javax.swing.JTextArea textoEdicao;
+    private javax.swing.JTextArea textoTocador;
     // End of variables declaration//GEN-END:variables
 }
