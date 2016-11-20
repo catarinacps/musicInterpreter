@@ -8,6 +8,7 @@ package musicinterpreter;
 import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -199,6 +200,12 @@ public class TelaInterface extends javax.swing.JFrame {
         });
         PainelTocador.add(botaoTocadorVoltar);
         botaoTocadorVoltar.setBounds(20, 520, 120, 80);
+
+        botaoTocadorSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTocadorSalvarActionPerformed(evt);
+            }
+        });
         PainelTocador.add(botaoTocadorSalvar);
         botaoTocadorSalvar.setBounds(920, 520, 70, 80);
 
@@ -308,7 +315,7 @@ public class TelaInterface extends javax.swing.JFrame {
             }
         });
         PainelAjuda.add(botaoEasterEgg);
-        botaoEasterEgg.setBounds(83, 620, 40, 9);
+        botaoEasterEgg.setBounds(83, 620, 40, 16);
 
         PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
@@ -411,10 +418,15 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEasterEggActionPerformed
 
     private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
-       
-        //katiauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        
-        
+        JFileChooser seletorArquivo = new JFileChooser();
+        int foiSelecionado = seletorArquivo.showSaveDialog(this);
+        if(foiSelecionado == JFileChooser.APPROVE_OPTION){
+            File arquivoEntrada = seletorArquivo.getSelectedFile();
+            String caminhoArquivo = arquivoEntrada.getAbsolutePath();
+            nomeArquivo.setText(arquivoEntrada.getName());
+            
+            LeitorArquivo.salvaArquivoTexto(caminhoArquivo, textoEdicao.getText());
+        }
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
     private void botaoTocadorPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPlayActionPerformed
@@ -440,6 +452,21 @@ public class TelaInterface extends javax.swing.JFrame {
     private void botaoTocadorStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorStopActionPerformed
        novaMusica.paraMusica();
     }//GEN-LAST:event_botaoTocadorStopActionPerformed
+
+    private void botaoTocadorSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorSalvarActionPerformed
+        JFileChooser seletorArquivo = new JFileChooser();
+        int foiSelecionado = seletorArquivo.showSaveDialog(this);
+        if(foiSelecionado == JFileChooser.APPROVE_OPTION){
+            File arquivoEntrada = seletorArquivo.getSelectedFile();
+            String caminhoArquivo = arquivoEntrada.getAbsolutePath();
+            
+            try {
+                novaMusica.salvaMIDI(caminhoArquivo);
+            } catch (IOException ex){
+                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_botaoTocadorSalvarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -65,7 +65,7 @@ public class Musica {
             }
         }
 
-        
+
         public boolean musicaEstaPausada(){
             if(this.tocadorControlado.isPaused()){
                 return true;
@@ -74,8 +74,8 @@ public class Musica {
                 return false;
             }
         }
-        
-        
+
+
 
 	public void resumeMusica(){
 		if(this.tocadorControlado.isPaused()){
@@ -86,10 +86,10 @@ public class Musica {
 	public void paraMusica(){
 		if(this.tocadorControlado.isPaused() || this.tocadorControlado.isPlaying()){
                         this.tocadorControlado.reset();
-                        
+
 		}
 	}
-        
+
         public void fechaMusica(){
             this.tocadorControlado.finish();
         }
@@ -98,10 +98,10 @@ public class Musica {
 		return this.notas;
 	}
 
-	public void salvaMIDI() throws IOException{
+	public void salvaMIDI(String caminhoArquivo) throws IOException{
 		Pattern musica = new Pattern(this.notas);
 
-		MidiFileManager.savePatternToMidi(musica, new File("nomearquivo.mid"));
+		MidiFileManager.savePatternToMidi(musica, new File(caminhoArquivo));
 		//implementar na interface pro cara escolher o nome tlg
 	}
 

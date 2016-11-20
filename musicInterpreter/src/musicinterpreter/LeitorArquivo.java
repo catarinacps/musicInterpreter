@@ -27,9 +27,9 @@ public class LeitorArquivo {
             while(byteLido != -1){
                 saidaIntegral += (char) byteLido;
 
-		byteLido = arquivoFormatado.read();
+				byteLido = arquivoFormatado.read();
             }
-
+            
             arquivoEntrada.close();
 
             return saidaIntegral;
@@ -39,4 +39,17 @@ public class LeitorArquivo {
             return null;
         }
     }
+
+	public static void salvaArquivoTexto(String caminhoArquivo, String textoASalvar){
+		try{
+			PrintWriter saidaTexto = new PrintWriter(caminhoArquivo);
+
+			saidaTexto.println(textoASalvar);
+                        
+                        saidaTexto.close();
+		}
+		catch(IOException erro){
+			System.err.printf("Erro na salvatura do arquivo %s.\n", erro.getMessage());
+		}
+	}
 }
