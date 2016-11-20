@@ -18,6 +18,7 @@ import javax.swing.Icon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -389,7 +390,9 @@ public class TelaInterface extends javax.swing.JFrame {
         Object[] opcoesTexto = { "Arquivo", "Texto" };
         Integer opcaoEntrada = JOptionPane.showOptionDialog(this,"Selecione o modo de entrada:","Entrada",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,opcoesTexto,opcoesTexto[0]);
         if (opcaoEntrada == 0){ // escolher a primeira opçao, ou seja "Arquivo"
-            JFileChooser seletorArquivo = new JFileChooser();
+            JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");             
+            seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
+            seletorArquivo.setAcceptAllFileFilterUsed(false);                      
             int foiSelecionado = seletorArquivo.showOpenDialog(this);
             if(foiSelecionado == JFileChooser.APPROVE_OPTION){
                 File arquivoEntrada = seletorArquivo.getSelectedFile();
@@ -407,6 +410,7 @@ public class TelaInterface extends javax.swing.JFrame {
         else if (opcaoEntrada == 1){ // escolher a segunda opcao, ou seja "Texto"
             textoEdicao.setText("");
             textoEdicao.setCaretPosition(0);
+            nomeArquivo.setText("Entrada de Texto");
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoEdicao");
         }
@@ -418,14 +422,16 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEasterEggActionPerformed
 
     private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
-        JFileChooser seletorArquivo = new JFileChooser();
+        JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
+        seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
+        seletorArquivo.setAcceptAllFileFilterUsed(false);
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             nomeArquivo.setText(arquivoEntrada.getName());
             
-            LeitorArquivo.salvaArquivoTexto(caminhoArquivo, textoEdicao.getText());
+            LeitorArquivo.salvaArquivoTexto(caminhoArquivo + ".txt", textoEdicao.getText());
         }
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
@@ -454,14 +460,16 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoTocadorStopActionPerformed
 
     private void botaoTocadorSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorSalvarActionPerformed
-        JFileChooser seletorArquivo = new JFileChooser();
+        JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
+        seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Audio","mid"));
+        seletorArquivo.setAcceptAllFileFilterUsed(false);
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             
             try {
-                novaMusica.salvaMIDI(caminhoArquivo);
+                novaMusica.salvaMIDI(caminhoArquivo + ".mid");
             } catch (IOException ex){
                 Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
