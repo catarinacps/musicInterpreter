@@ -51,6 +51,7 @@ public class TelaInterface extends javax.swing.JFrame {
         PainelConfiguracoes = new javax.swing.JPanel();
         controleVolume = new javax.swing.JSlider();
         controleInstrumento = new javax.swing.JComboBox<>();
+        controleRitmo = new javax.swing.JComboBox<>();
         fundoConfiguracoes = new javax.swing.JLabel();
         botaoConfiguracoesVoltar = new javax.swing.JButton();
         PainelTocador = new javax.swing.JPanel();
@@ -128,13 +129,15 @@ public class TelaInterface extends javax.swing.JFrame {
 
         PainelConfiguracoes.setLayout(null);
 
-        controleVolume.setMajorTickSpacing(10);
+        controleVolume.setMajorTickSpacing(127);
         controleVolume.setMaximum(127);
         controleVolume.setMinorTickSpacing(10);
+        controleVolume.setPaintLabels(true);
         controleVolume.setPaintTicks(true);
+        controleVolume.setToolTipText("Volume Maximo = 127");
         controleVolume.setValue(64);
         PainelConfiguracoes.add(controleVolume);
-        controleVolume.setBounds(310, 80, 660, 100);
+        controleVolume.setBounds(320, 80, 640, 100);
 
         controleInstrumento.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
         controleInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acoustic Grand Piano", "Bright Acoustic Piano", "Electric Grand Piano", "Honkey Tonk Piano", "Electric Piano", "Electric Piano 1", "Electric Piano 2", "Harpischord", "Clavinet", "Celesta", "Glockenspiel", "Music Box", "Vibraphone", "Marimba", "Xylophone", "Tubular Bells", "Dulcimer", "Drawbar Organ", "Percussive Organ", "Rock Organ", "Church Organ", "Reed Organ", "Accordian", "Harmonica", "Tango Accordian", "Nylon String Guitar", "Steel String Guitar", "Electric Jazz Guitar", "Electric Clean Guitar", "Electric Muted Guitar", "Overdriven Guitar", "Distortion Guitar", "Guitar Harmonics", "Acoustic Bass", "Electric Bass Finger", "Electric Bass Pick", "Fretless Bass", "Slap Bass 1", "Slap Bass 2", "Synth Bass 1", "Synth Bass 2", "Violin", "Viola", "Cello", "Contrabass", "Tremolo Strings", "Pizzicato Strings", "Orchestral Strings", "Timpani", "String Ensemble 1", "String Ensemble 2", "Synthstrings 1", "Synthstrings 2", "Choir AAHS", "Voice OOHS", "Synth Voice", "Orchestra Hit", "Trumpet", "Trombone", "Tuba", "Muted Trumpet", "French Horn", "Brass Section", "Synthbrass 1", "Synthbrass 2", "Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax", "Oboe ", "English Horn", "Bassoon", "Clarinet", "Piccolo", "Flute", "Recorder", "Pan Flute", "Blown Bottle", "Skakuhachi", "Whistle ", "Ocarina", "Square", "Sawtooth", "Calliope", "Chiff", "Charang", "Voice", "Fifths", "Basslead", "New Age", "Warm", "Polysynth", "Choir", "Bowed", "Metallic", "Halo", "Sweep", "Rain", "Soundtrack", "Crystal", "Atmosphere", "Brightness", "Goblins", "Echoes", "Sci-Fi", "Sitar", "Banjo", "Shamisen", "Koto", "Kalimba", "Bagpipe", "Fiddle", "Shanai", "Tinkle Bell", "Agogo", "Steel Drums", "Woodblock", "Taiko Drum", "Melodic Tom", "Synth Drum", "Reverse Cymbal", "Guitar Fret Noise", "Breath Noise", "Seashore", "Bird Tweet", "Telephone Ring", "Helicopter", "Applause", "Gunshot" }));
@@ -142,6 +145,13 @@ public class TelaInterface extends javax.swing.JFrame {
         controleInstrumento.setBorder(null);
         PainelConfiguracoes.add(controleInstrumento);
         controleInstrumento.setBounds(446, 260, 530, 110);
+
+        controleRitmo.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        controleRitmo.setMaximumRowCount(9);
+        controleRitmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0.01  -  Muito Rapido", "0.05", "0.10", "0.15", "0.20", "0.25  -  Padrao", "0.50", "0.75", "1.00  -  Muito Lento" }));
+        controleRitmo.setSelectedIndex(5);
+        PainelConfiguracoes.add(controleRitmo);
+        controleRitmo.setBounds(250, 450, 720, 110);
 
         fundoConfiguracoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fundoConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/configuracoes.png"))); // NOI18N
@@ -191,8 +201,20 @@ public class TelaInterface extends javax.swing.JFrame {
         botaoTocadorVoltar.setBounds(20, 520, 120, 80);
         PainelTocador.add(botaoTocadorSalvar);
         botaoTocadorSalvar.setBounds(920, 520, 70, 80);
+
+        botaoTocadorStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTocadorStopActionPerformed(evt);
+            }
+        });
         PainelTocador.add(botaoTocadorStop);
         botaoTocadorStop.setBounds(150, 630, 130, 130);
+
+        botaoTocadorPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTocadorPauseActionPerformed(evt);
+            }
+        });
         PainelTocador.add(botaoTocadorPause);
         botaoTocadorPause.setBounds(440, 630, 140, 130);
 
@@ -312,8 +334,10 @@ public class TelaInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
         } 
         else{
-            novaMusica = new Musica(textoEdicao.getText());
+            novaMusica = new Musica(textoEdicao.getText(), controleVolume.getValue(), controleInstrumento.getSelectedIndex(), controleRitmo.getSelectedIndex());
             textoTocador.setText(novaMusica.pegaNotas());
+            
+            
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoTocador");
         }
@@ -339,6 +363,7 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoConfiguracoesVoltarActionPerformed
 
     private void botaoTocadorVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorVoltarActionPerformed
+        novaMusica.fechaMusica();
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoInicial");
     }//GEN-LAST:event_botaoTocadorVoltarActionPerformed
@@ -386,18 +411,35 @@ public class TelaInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEasterEggActionPerformed
 
     private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
+       
+        //katiauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        
         
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
     private void botaoTocadorPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPlayActionPerformed
-        try {
-            novaMusica.tocaMusica();
-        } catch (InvalidMidiDataException ex) {
-            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MidiUnavailableException ex) {
-            Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+        if(novaMusica.musicaEstaPausada()){
+            novaMusica.resumeMusica();
         }
+        else{
+            try {
+                novaMusica.tocaMusica();
+            } catch (InvalidMidiDataException ex) {
+                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MidiUnavailableException ex) {
+                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_botaoTocadorPlayActionPerformed
+
+    private void botaoTocadorPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPauseActionPerformed
+       novaMusica.pausaMusica();
+    }//GEN-LAST:event_botaoTocadorPauseActionPerformed
+
+    private void botaoTocadorStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorStopActionPerformed
+       novaMusica.paraMusica();
+    }//GEN-LAST:event_botaoTocadorStopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -462,6 +504,7 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JButton botaoTocadorStop;
     private javax.swing.JButton botaoTocadorVoltar;
     private javax.swing.JComboBox<String> controleInstrumento;
+    private javax.swing.JComboBox<String> controleRitmo;
     private javax.swing.JSlider controleVolume;
     private javax.swing.JLabel fundoAjuda;
     private javax.swing.JLabel fundoConfiguracoes;

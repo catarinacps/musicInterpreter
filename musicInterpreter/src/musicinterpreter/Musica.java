@@ -46,7 +46,7 @@ public class Musica {
 	------------------------------------------------------------------------------------------------------------------------
 	*/
 
-    public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, float ritmoInicial){
+    public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, int ritmoInicial){
         DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto, volumeInicial, instrumentoInicial, ritmoInicial);
         this.notas = decodificador.pegaSaida();
 
@@ -55,15 +55,27 @@ public class Musica {
     }
 
 	public void tocaMusica() throws InvalidMidiDataException, MidiUnavailableException{
+            if(!this.tocadorControlado.isPlaying())
 		this.tocadorControlado.start(this.tocador.getSequence(this.notas));
-		//implementar dps pause, stop e resume (junto com a interface tlg)
 	}
 
 	public void pausaMusica(){
 		if(this.tocadorControlado.isPlaying()){
 			this.tocadorControlado.pause();
-		}
-	}
+            }
+        }
+
+        
+        public boolean musicaEstaPausada(){
+            if(this.tocadorControlado.isPaused()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        
 
 	public void resumeMusica(){
 		if(this.tocadorControlado.isPaused()){
@@ -73,9 +85,14 @@ public class Musica {
 
 	public void paraMusica(){
 		if(this.tocadorControlado.isPaused() || this.tocadorControlado.isPlaying()){
-			this.tocadorControlado.finish();
+                        this.tocadorControlado.reset();
+                        
 		}
 	}
+        
+        public void fechaMusica(){
+            this.tocadorControlado.finish();
+        }
 
 	public String pegaNotas(){
 		return this.notas;

@@ -23,7 +23,7 @@ public class MusicInterpreter {
 
         System.out.println(entradaLida);
 
-        Musica novaMusica = new Musica(entradaLida);
+        Musica novaMusica = new Musica(entradaLida, 64, 0, 5);
 
         System.out.println(novaMusica.pegaNotas());
 
