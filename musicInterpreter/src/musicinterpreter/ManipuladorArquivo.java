@@ -12,22 +12,25 @@ package musicinterpreter;
 import java.io.*;
 
 /**
- *
- * @author Luiz Eduardo
+ * A classe ManipuladorArquivo realiza as operações de leitura e escrita requisitadas pelo sistema.
+ * 
+ * @author Henrique Silva, Nicolas Eymael e Luis Miguel
  */
 public class ManipuladorArquivo {
 
     /**
-     *
-     * @param nomeArquivo
-     * @return
+     * Retorna o arquivo .txt inteiro em formato String.
+     * É necessario receber o caminho relativo ou absoluto do arquivo de texto a ser lido.
+     * 
+     * @param nomeArquivo é o caminho do arquivo desejado
+     * @return retorna o arquivo inteiro numa string
      */
     public static String leArquivo(String nomeArquivo){
         try{
             FileInputStream arquivoEntrada = new FileInputStream(nomeArquivo);
             InputStreamReader arquivoFormatado = new InputStreamReader(arquivoEntrada);
 
-            int byteLido = 0;
+            int byteLido;
 	    String saidaIntegral = "";
 
 	    byteLido = arquivoFormatado.read();
@@ -49,9 +52,12 @@ public class ManipuladorArquivo {
     }
 
     /**
-     *
-     * @param caminhoArquivo
-     * @param textoASalvar
+     * A função realiza a gravação de uma string num arquivo de texto cujo caminho será informado.
+     * Também é necessário informar o caminho relativo ou absoluto do novo arquivo a ser criado.
+     * Caso já exista um arquivo naquele caminho, o existente será sobrescrevido.
+     * 
+     * @param caminhoArquivo é o caminho do novo arquivo
+     * @param textoASalvar é a string a ser salva
      */
     public static void salvaArquivoTexto(String caminhoArquivo, String textoASalvar){
 		try{
