@@ -1,6 +1,6 @@
 Saloon Music Player:
-	by  Luis Miguel Santos Batista
-	    Henrique Correa Pereira da Silva
+	by Henrique Correa Pereira da Silva
+	    Luis Miguel Santos Batista
     	    Nicolas Eymael da Silva
 
 

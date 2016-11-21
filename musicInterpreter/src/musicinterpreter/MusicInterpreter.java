@@ -24,12 +24,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Admin
  */
-public class TelaInterface extends javax.swing.JFrame {
+public class MusicInterpreter extends javax.swing.JFrame {
     private Musica novaMusica;
     /**
      * Creates new form TelaInterface
      */
-    public TelaInterface() {
+    public MusicInterpreter() {
         initComponents();
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagens/iconeMcCree.png")));
     }
@@ -44,6 +44,9 @@ public class TelaInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         PainelPrincipal = new javax.swing.JPanel();
+        PainelAbertura = new javax.swing.JPanel();
+        fundoAbertura = new javax.swing.JLabel();
+        botaoIniciar = new javax.swing.JButton();
         PainelInicial = new javax.swing.JPanel();
         fundoInicial = new javax.swing.JLabel();
         botaoInicialEntrada = new javax.swing.JButton();
@@ -87,6 +90,25 @@ public class TelaInterface extends javax.swing.JFrame {
         setResizable(false);
 
         PainelPrincipal.setLayout(new java.awt.CardLayout());
+
+        PainelAbertura.setLayout(null);
+
+        fundoAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telastartup.png"))); // NOI18N
+        PainelAbertura.add(fundoAbertura);
+        fundoAbertura.setBounds(0, 0, 1024, 768);
+
+        botaoIniciar.setBorder(null);
+        botaoIniciar.setBorderPainted(false);
+        botaoIniciar.setContentAreaFilled(false);
+        botaoIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoIniciarActionPerformed(evt);
+            }
+        });
+        PainelAbertura.add(botaoIniciar);
+        botaoIniciar.setBounds(400, 340, 230, 240);
+
+        PainelPrincipal.add(PainelAbertura, "cartaoAbertura");
 
         PainelInicial.setLayout(null);
 
@@ -473,7 +495,10 @@ public class TelaInterface extends javax.swing.JFrame {
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             nomeArquivo.setText(arquivoEntrada.getName());
             
-            LeitorArquivo.salvaArquivoTexto(caminhoArquivo + ".txt", textoEdicao.getText());
+            if(!caminhoArquivo.endsWith(".txt")){
+                caminhoArquivo += ".txt";
+            }
+            LeitorArquivo.salvaArquivoTexto(caminhoArquivo, textoEdicao.getText());
         }
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
@@ -485,9 +510,9 @@ public class TelaInterface extends javax.swing.JFrame {
             try {
                 novaMusica.tocaMusica();
             } catch (InvalidMidiDataException ex) {
-                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (MidiUnavailableException ex) {
-                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -511,12 +536,20 @@ public class TelaInterface extends javax.swing.JFrame {
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             
             try {
-                novaMusica.salvaMIDI(caminhoArquivo + ".mid");
+                if(!caminhoArquivo.endsWith(".mid")){
+                caminhoArquivo += ".mid";
+            }
+                novaMusica.salvaMIDI(caminhoArquivo);
             } catch (IOException ex){
-                Logger.getLogger(TelaInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_botaoTocadorSalvarActionPerformed
+
+    private void botaoIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIniciarActionPerformed
+        CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
+        cartao.show(PainelPrincipal, "cartaoInicial");
+    }//GEN-LAST:event_botaoIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -531,14 +564,18 @@ public class TelaInterface extends javax.swing.JFrame {
             javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -547,13 +584,14 @@ public class TelaInterface extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInterface().setVisible(true);
+                new MusicInterpreter().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel EasterEgg;
+    private javax.swing.JPanel PainelAbertura;
     private javax.swing.JPanel PainelAjuda;
     private javax.swing.JPanel PainelConfiguracoes;
     private javax.swing.JPanel PainelEdicao;
@@ -569,6 +607,7 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JButton botaoInicialAvancar;
     private javax.swing.JButton botaoInicialConfiguracoes;
     private javax.swing.JButton botaoInicialEntrada;
+    private javax.swing.JButton botaoIniciar;
     private javax.swing.JButton botaoTocadorPause;
     private javax.swing.JButton botaoTocadorPlay;
     private javax.swing.JButton botaoTocadorSalvar;
@@ -577,6 +616,7 @@ public class TelaInterface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> controleInstrumento;
     private javax.swing.JComboBox<String> controleRitmo;
     private javax.swing.JSlider controleVolume;
+    private javax.swing.JLabel fundoAbertura;
     private javax.swing.JLabel fundoAjuda;
     private javax.swing.JLabel fundoConfiguracoes;
     private javax.swing.JLabel fundoEdicao;
