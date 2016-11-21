@@ -23,11 +23,6 @@ public class Musica {
 	private Player tocador;
 	private ManagedPlayer tocadorControlado;
 
-	static final int OITAVA_PADRAO = 5;
-	static final int NUMERO_DE_INSTRUMENTOS = 127;
-	static final int VOLUME_MAXIMO = 127;
-	static final int ULTIMA_OITAVA = 9;
-
 	/*
 	------------------------------------------------------------------------------------------------------------------------
 	Metodos Publicos:
@@ -46,8 +41,8 @@ public class Musica {
 	------------------------------------------------------------------------------------------------------------------------
 	*/
 
-    public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, int ritmoInicial){
-        DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto, volumeInicial, instrumentoInicial, ritmoInicial);
+    public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
+        DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmoInicial, oitavaInicial);
         this.notas = decodificador.pegaSaida();
 
 		this.tocador = new Player();

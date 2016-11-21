@@ -45,8 +45,8 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
         PainelPrincipal = new javax.swing.JPanel();
         PainelAbertura = new javax.swing.JPanel();
-        fundoAbertura = new javax.swing.JLabel();
         botaoIniciar = new javax.swing.JButton();
+        fundoAbertura = new javax.swing.JLabel();
         PainelInicial = new javax.swing.JPanel();
         fundoInicial = new javax.swing.JLabel();
         botaoInicialEntrada = new javax.swing.JButton();
@@ -57,6 +57,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
         controleVolume = new javax.swing.JSlider();
         controleInstrumento = new javax.swing.JComboBox<>();
         controleRitmo = new javax.swing.JComboBox<>();
+        controleOitava = new javax.swing.JComboBox<>();
         fundoConfiguracoes = new javax.swing.JLabel();
         botaoConfiguracoesVoltar = new javax.swing.JButton();
         PainelTocador = new javax.swing.JPanel();
@@ -93,20 +94,24 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
         PainelAbertura.setLayout(null);
 
-        fundoAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telastartup.png"))); // NOI18N
-        PainelAbertura.add(fundoAbertura);
-        fundoAbertura.setBounds(0, 0, 1024, 768);
-
+        botaoIniciar.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 18)); // NOI18N
+        botaoIniciar.setToolTipText("Pressione para continuar...");
         botaoIniciar.setBorder(null);
         botaoIniciar.setBorderPainted(false);
         botaoIniciar.setContentAreaFilled(false);
+        botaoIniciar.setFocusable(false);
+        botaoIniciar.setRequestFocusEnabled(false);
         botaoIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoIniciarActionPerformed(evt);
             }
         });
         PainelAbertura.add(botaoIniciar);
-        botaoIniciar.setBounds(400, 340, 230, 240);
+        botaoIniciar.setBounds(180, 60, 670, 520);
+
+        fundoAbertura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telastartup.png"))); // NOI18N
+        PainelAbertura.add(fundoAbertura);
+        fundoAbertura.setBounds(0, 0, 1024, 768);
 
         PainelPrincipal.add(PainelAbertura, "cartaoAbertura");
 
@@ -165,6 +170,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
         PainelConfiguracoes.setLayout(null);
 
+        controleVolume.setForeground(new java.awt.Color(102, 102, 102));
         controleVolume.setMajorTickSpacing(127);
         controleVolume.setMaximum(127);
         controleVolume.setMinorTickSpacing(10);
@@ -172,22 +178,32 @@ public class MusicInterpreter extends javax.swing.JFrame {
         controleVolume.setPaintTicks(true);
         controleVolume.setToolTipText("Volume Maximo = 127");
         controleVolume.setValue(64);
+        controleVolume.setFocusable(false);
+        controleVolume.setOpaque(false);
+        controleVolume.setRequestFocusEnabled(false);
         PainelConfiguracoes.add(controleVolume);
-        controleVolume.setBounds(320, 80, 640, 90);
+        controleVolume.setBounds(320, 60, 640, 90);
 
         controleInstrumento.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
         controleInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acoustic Grand Piano", "Bright Acoustic Piano", "Electric Grand Piano", "Honkey Tonk Piano", "Electric Piano", "Electric Piano 1", "Electric Piano 2", "Harpischord", "Clavinet", "Celesta", "Glockenspiel", "Music Box", "Vibraphone", "Marimba", "Xylophone", "Tubular Bells", "Dulcimer", "Drawbar Organ", "Percussive Organ", "Rock Organ", "Church Organ", "Reed Organ", "Accordian", "Harmonica", "Tango Accordian", "Nylon String Guitar", "Steel String Guitar", "Electric Jazz Guitar", "Electric Clean Guitar", "Electric Muted Guitar", "Overdriven Guitar", "Distortion Guitar", "Guitar Harmonics", "Acoustic Bass", "Electric Bass Finger", "Electric Bass Pick", "Fretless Bass", "Slap Bass 1", "Slap Bass 2", "Synth Bass 1", "Synth Bass 2", "Violin", "Viola", "Cello", "Contrabass", "Tremolo Strings", "Pizzicato Strings", "Orchestral Strings", "Timpani", "String Ensemble 1", "String Ensemble 2", "Synthstrings 1", "Synthstrings 2", "Choir AAHS", "Voice OOHS", "Synth Voice", "Orchestra Hit", "Trumpet", "Trombone", "Tuba", "Muted Trumpet", "French Horn", "Brass Section", "Synthbrass 1", "Synthbrass 2", "Soprano Sax", "Alto Sax", "Tenor Sax", "Baritone Sax", "Oboe ", "English Horn", "Bassoon", "Clarinet", "Piccolo", "Flute", "Recorder", "Pan Flute", "Blown Bottle", "Skakuhachi", "Whistle ", "Ocarina", "Square", "Sawtooth", "Calliope", "Chiff", "Charang", "Voice", "Fifths", "Basslead", "New Age", "Warm", "Polysynth", "Choir", "Bowed", "Metallic", "Halo", "Sweep", "Rain", "Soundtrack", "Crystal", "Atmosphere", "Brightness", "Goblins", "Echoes", "Sci-Fi", "Sitar", "Banjo", "Shamisen", "Koto", "Kalimba", "Bagpipe", "Fiddle", "Shanai", "Tinkle Bell", "Agogo", "Steel Drums", "Woodblock", "Taiko Drum", "Melodic Tom", "Synth Drum", "Reverse Cymbal", "Guitar Fret Noise", "Breath Noise", "Seashore", "Bird Tweet", "Telephone Ring", "Helicopter", "Applause", "Gunshot" }));
         controleInstrumento.setToolTipText("");
         controleInstrumento.setBorder(null);
         PainelConfiguracoes.add(controleInstrumento);
-        controleInstrumento.setBounds(446, 260, 530, 110);
+        controleInstrumento.setBounds(440, 190, 530, 110);
 
         controleRitmo.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
-        controleRitmo.setMaximumRowCount(9);
-        controleRitmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0.01  -  Muito Rapido", "0.05", "0.10", "0.15", "0.20", "0.25  -  Padrao", "0.50", "0.75", "1.00  -  Muito Lento" }));
-        controleRitmo.setSelectedIndex(5);
+        controleRitmo.setMaximumRowCount(6);
+        controleRitmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grave (40 BPM)", "Largo (45 BPM)", "Larghetto (50 BPM)", "Lento (55 BPM)", "Adagio (60 BPM)", "Adagietto (65 BPM)", "Andante (70 BPM)", "Andantino (80 BPM)", "Moderato (95 BPM)", "Allegretto (110 BPM)", "Allegro (120 BPM) - default", "Vivace (145 BPM)", "Presto (180 BPM)", "Prestissimo (220 BPM)" }));
+        controleRitmo.setSelectedIndex(10);
         PainelConfiguracoes.add(controleRitmo);
-        controleRitmo.setBounds(250, 450, 720, 110);
+        controleRitmo.setBounds(250, 330, 720, 100);
+
+        controleOitava.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
+        controleOitava.setMaximumRowCount(5);
+        controleOitava.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1ª", "2ª", "3ª", "4ª", "5ª", "6ª", "7ª", "8ª", "9ª", "10ª" }));
+        controleOitava.setSelectedIndex(4);
+        PainelConfiguracoes.add(controleOitava);
+        controleOitava.setBounds(280, 460, 690, 100);
 
         fundoConfiguracoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fundoConfiguracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/configuracoes.png"))); // NOI18N
@@ -380,7 +396,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
             }
         });
         PainelAjuda.add(botaoEasterEgg);
-        botaoEasterEgg.setBounds(83, 620, 40, 1);
+        botaoEasterEgg.setBounds(83, 620, 40, 0);
 
         PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
@@ -406,7 +422,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
         } 
         else{
-            novaMusica = new Musica(textoEdicao.getText(), controleVolume.getValue(), controleInstrumento.getSelectedIndex(), controleRitmo.getSelectedIndex());
+            novaMusica = new Musica(textoEdicao.getText(), controleVolume.getValue(), controleInstrumento.getSelectedIndex(), controleRitmo.getSelectedIndex(), controleOitava.getSelectedIndex());
             textoTocador.setText(novaMusica.pegaNotas());
             textoTocador.setCaretPosition(0);
             
@@ -416,7 +432,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoInicialAvancarActionPerformed
 
     private void botaoInicialAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAjudaActionPerformed
-        String ajudatxt = LeitorArquivo.leArquivo("ajuda.txt");
+        String ajudatxt = ManipuladorArquivo.leArquivo("ajuda.txt");
         textoAjuda.setText(ajudatxt);
         textoAjuda.setCaretPosition(0);  // colocar scroll no topo
         EasterEgg.setVisible(false);  
@@ -463,7 +479,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
                 String caminhoArquivo = arquivoEntrada.getAbsolutePath();
                 nomeArquivo.setText(arquivoEntrada.getName());
 
-                String entradaLida = LeitorArquivo.leArquivo(caminhoArquivo);
+                String entradaLida = ManipuladorArquivo.leArquivo(caminhoArquivo);
                 textoEdicao.setText(entradaLida);
                 textoEdicao.setCaretPosition(0);
                 CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
@@ -493,12 +509,14 @@ public class MusicInterpreter extends javax.swing.JFrame {
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
-            nomeArquivo.setText(arquivoEntrada.getName());
+            String nome = arquivoEntrada.getName();
             
-            if(!caminhoArquivo.endsWith(".txt")){
+            if(!caminhoArquivo.endsWith(".txt") ){
                 caminhoArquivo += ".txt";
+                nome += ".txt";
             }
-            LeitorArquivo.salvaArquivoTexto(caminhoArquivo, textoEdicao.getText());
+            nomeArquivo.setText(nome);
+            ManipuladorArquivo.salvaArquivoTexto(caminhoArquivo, textoEdicao.getText());
         }
     }//GEN-LAST:event_botaoEdicaoSalvarActionPerformed
 
@@ -614,6 +632,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
     private javax.swing.JButton botaoTocadorStop;
     private javax.swing.JButton botaoTocadorVoltar;
     private javax.swing.JComboBox<String> controleInstrumento;
+    private javax.swing.JComboBox<String> controleOitava;
     private javax.swing.JComboBox<String> controleRitmo;
     private javax.swing.JSlider controleVolume;
     private javax.swing.JLabel fundoAbertura;

@@ -13,7 +13,7 @@ import java.io.*;
 
 
 
-public class LeitorArquivo {
+public class ManipuladorArquivo {
     public static String leArquivo(String nomeArquivo){
         try{
             FileInputStream arquivoEntrada = new FileInputStream(nomeArquivo);
@@ -44,7 +44,7 @@ public class LeitorArquivo {
 		try{
 			PrintWriter saidaTexto = new PrintWriter(caminhoArquivo);
 
-			saidaTexto.println(textoASalvar);
+			saidaTexto.printf(textoASalvar);
                         
                         saidaTexto.close();
 		}

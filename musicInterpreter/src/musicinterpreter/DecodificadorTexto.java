@@ -11,34 +11,34 @@ package musicinterpreter;
  */
 public class DecodificadorTexto {
 
-    static final int OITAVA_PADRAO = 5;
     static final int NUMERO_DE_INSTRUMENTOS = 127;
     static final int VOLUME_MAXIMO = 127;
     static final int ULTIMA_OITAVA = 9;
 
     private String saidaDecodificada;
 
-    public DecodificadorTexto(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmo){
-        this.saidaDecodificada = decodificaArquivo(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmo);
+    public DecodificadorTexto(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
+        this.saidaDecodificada = decodificaArquivo(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmoInicial, oitavaInicial);
     }
 
     public String pegaSaida(){
 		return this.saidaDecodificada;
 	}
 
-    public String decodificaArquivo(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceInicial){
+    public String decodificaArquivo(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
 		String stringAuxiliar = "";
 		Nota notaTocada = null;
-		int oitavaAtual = OITAVA_PADRAO;
+		int oitavaAtual = oitavaInicial;
 		int volumeAtual = volumeInicial;
 		int instrumentoAtual = instrumentoInicial;
 		int i = 0;
-                
-                float ritmoInicial = decodificaControleRitmo(indiceInicial);
+
+        int ritmoInicial = decodificaControleRitmo(indiceRitmoInicial);
 
 		char[] entradaEmCaracteres = entradaTexto.toCharArray();
-                
-                stringAuxiliar += "I" + Integer.toString(instrumentoAtual) + " ";
+
+		stringAuxiliar += "T" + Integer.toString(ritmoInicial) + " ";
+        stringAuxiliar += "I" + Integer.toString(instrumentoAtual) + " ";
 
 		for(i = 0; i < entradaTexto.length(); i++){
 			if(testeInstrumento(entradaEmCaracteres[i])){
@@ -50,24 +50,24 @@ public class DecodificadorTexto {
 				volumeAtual = alteraVolume(entradaEmCaracteres[i], volumeAtual);
 			}
 			else if(testeOitava(entradaEmCaracteres[i])){
-				oitavaAtual = alteraOitava(entradaEmCaracteres[i], oitavaAtual);
+				oitavaAtual = alteraOitava(entradaEmCaracteres[i], oitavaAtual, oitavaInicial);
 			}
 			else if (testeNota(entradaEmCaracteres[i])){
 				notaTocada = new Nota(entradaEmCaracteres[i], oitavaAtual, volumeAtual);
-				stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + '/' + Float.toString(ritmoInicial) + "a" + notaTocada.pegaVolume() + " ";
+				stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
 
 			}
 			else{ // nenhum dos caracteres anteriores, entao repetir a nota anterior ou fazer uma pausa
 				try{
 					if (testeNota(entradaEmCaracteres[i-1])){
-						stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + '/' + Float.toString(ritmoInicial) + "a" + notaTocada.pegaVolume() + " ";
+						stringAuxiliar += notaTocada.pegaNota() + notaTocada.pegaOitava() + "a" + notaTocada.pegaVolume() + " ";
 					}
 					else{
-						stringAuxiliar += "R" + '/' + Float.toString(ritmoInicial) + " ";
+						stringAuxiliar += "R ";
 					}
 				}
 				catch(IndexOutOfBoundsException erroLimiteArray){
-					stringAuxiliar += "R" + '/' + Float.toString(ritmoInicial) + " ";
+					stringAuxiliar += "R ";
 				}
 			}
 		}
@@ -135,9 +135,9 @@ public class DecodificadorTexto {
 		return false;
 	}
 
-	private int alteraOitava(char caracterLido, int oitavaAtual){
+	private int alteraOitava(char caracterLido, int oitavaAtual, int oitavaInicial){
 		if(oitavaAtual == ULTIMA_OITAVA){
-			return OITAVA_PADRAO;
+			return oitavaInicial;
 		}
 		else{
 			return oitavaAtual += 1;
@@ -150,19 +150,24 @@ public class DecodificadorTexto {
 		}
 		return false;
 	}
-        
-    private float decodificaControleRitmo(int indice){
+
+    private int decodificaControleRitmo(int indice){
         switch(indice){
-            case 0: return 0.01f;
-            case 1: return 0.05f;
-            case 2: return 0.10f;
-            case 3: return 0.15f;
-            case 4: return 0.20f;
-            case 5: return 0.25f;
-            case 6: return 0.50f;
-            case 7: return 0.75f;
-            case 8: return 1.00f;
-            default: return 0.25f;
+            case 0: return 40;
+            case 1: return 45;
+            case 2: return 50;
+            case 3: return 55;
+            case 4: return 60;
+            case 5: return 65;
+            case 6: return 70;
+            case 7: return 80;
+            case 8: return 95;
+			case 9: return 110;
+			case 10: return 120; //default
+			case 11: return 145;
+			case 12: return 180;
+			case 13: return 220;
+            default: return 120;
         }
     }
 }

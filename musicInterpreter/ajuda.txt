@@ -9,6 +9,26 @@ metodos:
 	> Carregamento de Arquivo;
 	> Digitar a entrada.
 
+A entrada consistira de uma serie de caracteres definidos conforme o mapeamento a
+seguir:
+	A	>  Nota La
+	B	>  Nota Si
+	C	>  Nota Do
+	D	>  Nota Re
+	E	>  Nota Mi
+	F	>  Nota Fa
+	G	>  Nota Sol
+	Espaco	>  Dobra o volume
+	!	>  Instrumento Harpsichord
+	Outras vogais	>  Aumenta o volume em 10%
+	Numeros	>  Altera o instrumento baseado no numero e no indice
+	?	>  Aumenta a oitava (se esta na ultima, retorna a inicial)
+	Nova Linha	>  Instrumento Tubular Bells
+	;	>  Instrumento Pan Flute
+	,	>  Instrumento Church Organ
+	Demais	>  Se o char anterior era uma nota, repete a nota anterior,
+	caracteres	senao, silencia a musica por uma duracao de nota
+
 
 Permite-se a alteracao das configuracoes iniciais de:
 	> Volume
