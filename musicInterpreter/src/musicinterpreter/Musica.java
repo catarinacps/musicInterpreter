@@ -41,6 +41,14 @@ public class Musica {
 	------------------------------------------------------------------------------------------------------------------------
 	*/
 
+    /**
+     *
+     * @param entradaTexto
+     * @param volumeInicial
+     * @param instrumentoInicial
+     * @param indiceRitmoInicial
+     * @param oitavaInicial
+     */
     public Musica(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
         DecodificadorTexto decodificador = new DecodificadorTexto(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmoInicial, oitavaInicial);
         this.notas = decodificador.pegaSaida();
@@ -49,19 +57,30 @@ public class Musica {
 		this.tocadorControlado = new ManagedPlayer();
     }
 
-	public void tocaMusica() throws InvalidMidiDataException, MidiUnavailableException{
+    /**
+     *
+     * @throws InvalidMidiDataException
+     * @throws MidiUnavailableException
+     */
+    public void tocaMusica() throws InvalidMidiDataException, MidiUnavailableException{
             if(!this.tocadorControlado.isPlaying())
 		this.tocadorControlado.start(this.tocador.getSequence(this.notas));
 	}
 
-	public void pausaMusica(){
+    /**
+     *
+     */
+    public void pausaMusica(){
 		if(this.tocadorControlado.isPlaying()){
 			this.tocadorControlado.pause();
             }
         }
 
-
-        public boolean musicaEstaPausada(){
+    /**
+     *
+     * @return
+     */
+    public boolean musicaEstaPausada(){
             if(this.tocadorControlado.isPaused()){
                 return true;
             }
@@ -70,35 +89,49 @@ public class Musica {
             }
         }
 
-
-
-	public void resumeMusica(){
+    /**
+     *
+     */
+    public void resumeMusica(){
 		if(this.tocadorControlado.isPaused()){
 			this.tocadorControlado.resume();
 		}
 	}
 
-	public void paraMusica(){
+    /**
+     *
+     */
+    public void paraMusica(){
 		if(this.tocadorControlado.isPaused() || this.tocadorControlado.isPlaying()){
                         this.tocadorControlado.reset();
 
 		}
 	}
 
-        public void fechaMusica(){
+    /**
+     *
+     */
+    public void fechaMusica(){
             this.tocadorControlado.finish();
         }
 
-	public String pegaNotas(){
+    /**
+     *
+     * @return
+     */
+    public String pegaNotas(){
 		return this.notas;
 	}
 
-	public void salvaMIDI(String caminhoArquivo) throws IOException{
+    /**
+     *
+     * @param caminhoArquivo
+     * @throws IOException
+     */
+    public void salvaMIDI(String caminhoArquivo) throws IOException{
 		Pattern musica = new Pattern(this.notas);
 
 		MidiFileManager.savePatternToMidi(musica, new File(caminhoArquivo));
 		//implementar na interface pro cara escolher o nome tlg
 	}
-
-
 }

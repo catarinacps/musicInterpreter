@@ -17,14 +17,35 @@ public class DecodificadorTexto {
 
     private String saidaDecodificada;
 
+    /**
+     *
+     * @param entradaTexto
+     * @param volumeInicial
+     * @param instrumentoInicial
+     * @param indiceRitmoInicial
+     * @param oitavaInicial
+     */
     public DecodificadorTexto(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
         this.saidaDecodificada = decodificaArquivo(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmoInicial, oitavaInicial);
     }
 
+    /**
+     *
+     * @return
+     */
     public String pegaSaida(){
 		return this.saidaDecodificada;
 	}
 
+    /**
+     *
+     * @param entradaTexto
+     * @param volumeInicial
+     * @param instrumentoInicial
+     * @param indiceRitmoInicial
+     * @param oitavaInicial
+     * @return
+     */
     public String decodificaArquivo(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
 		String stringAuxiliar = "";
 		Nota notaTocada = null;
@@ -74,10 +95,6 @@ public class DecodificadorTexto {
 
 		return stringAuxiliar;
 	}
-
-	//------------------------------------------------------------------------------------------------------------------------
-	//Metodos auxiliares de decodificaArquivo
-	//------------------------------------------------------------------------------------------------------------------------
 
 	private int multiplicaVolume(int volume, float multiplicador){
                 float multiplicacaoFloat = volume * multiplicador;

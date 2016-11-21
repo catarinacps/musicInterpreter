@@ -11,9 +11,17 @@ package musicinterpreter;
  */
 import java.io.*;
 
-
-
+/**
+ *
+ * @author Luiz Eduardo
+ */
 public class ManipuladorArquivo {
+
+    /**
+     *
+     * @param nomeArquivo
+     * @return
+     */
     public static String leArquivo(String nomeArquivo){
         try{
             FileInputStream arquivoEntrada = new FileInputStream(nomeArquivo);
@@ -40,7 +48,12 @@ public class ManipuladorArquivo {
         }
     }
 
-	public static void salvaArquivoTexto(String caminhoArquivo, String textoASalvar){
+    /**
+     *
+     * @param caminhoArquivo
+     * @param textoASalvar
+     */
+    public static void salvaArquivoTexto(String caminhoArquivo, String textoASalvar){
 		try{
 			PrintWriter saidaTexto = new PrintWriter(caminhoArquivo);
 
