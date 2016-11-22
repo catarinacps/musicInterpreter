@@ -7,7 +7,7 @@ package musicinterpreter;
 
 /**
  *
- * @author Admin
+ * @author Henrique Silva, Nicolas Eymael e Luis Miguel
  */
 public class DecodificadorTexto {
 
@@ -18,33 +18,48 @@ public class DecodificadorTexto {
     private String saidaDecodificada;
 
     /**
+     * Construtor da classe DecodificadorTexto
+     * A biblioteca utilizada (JFugue) é capaz de reproduzir musica utilizando uma string como entrada,
+     * pensando nisso utilizamos 5 parametros para formar a string que contem as notas musicais a serem reproduzidas,
+     * são eles: Entrada do Usuario, Volume, Instrumento, Ritmo e Oitava.
      *
-     * @param entradaTexto
-     * @param volumeInicial
-     * @param instrumentoInicial
-     * @param indiceRitmoInicial
-     * @param oitavaInicial
+     * 
+     * @param entradaTexto  texto a ser decodificado, pode ter sido originado de um arquivo .txt ou diretamente escrito pelo usuario
+     * @param volumeInicial volume inicializado pelo usuario nas configuraçoes (default 64, min 0, max 127)
+     * @param instrumentoInicial    instrumento inicializado pelo usuario nas configuraçoes (default 0 (piano acustico), min 0, max 127)
+     * @param indiceRitmoInicial    indice do ritmo inicializado pelo usuario nas configuraçoes, o indice será decodificado para o ritmo correspondente (em BPM)
+     * @param oitavaInicial oitava das notas inicializada pelo usuario nas configuraçoes (default 4, min 0, max 9)
      */
     public DecodificadorTexto(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
         this.saidaDecodificada = decodificaArquivo(entradaTexto, volumeInicial, instrumentoInicial, indiceRitmoInicial, oitavaInicial);
     }
 
     /**
-     *
-     * @return
+     * Retorna a string com as notas musicais, como um metodo get()
+     * 
+     * @return string com todas as notas das musica, ja decodificadas e bem definidas
      */
     public String pegaSaida(){
 		return this.saidaDecodificada;
 	}
 
     /**
-     *
-     * @param entradaTexto
-     * @param volumeInicial
-     * @param instrumentoInicial
-     * @param indiceRitmoInicial
-     * @param oitavaInicial
-     * @return
+     * Recebe as entrada codificada das notas junto com os parametros caracteristicos da musica (volume, instrumento, ritmo e oitava)
+     * com isso utiliza-se um loop for percorrendo o texto de entrada e a string contendo a musica é montada em cada iteração
+     * veja que cada caracter do texto de entrada pode estar em um dos 4 casos, que são:
+     *      alteração no instrumento a ser tocado
+     *      alteração no volume da musica
+     *      alteração na oitava da nota
+     *      nota a ser tocada
+     *      repetição ou pausa, de acordo com o caracter anterior
+     * 
+     * 
+     * @param entradaTexto  texto a ser decodificado, pode ter sido originado de um arquivo .txt ou diretamente escrito pelo usuario
+     * @param volumeInicial volume inicializado pelo usuario nas configuraçoes (default 64, min 0, max 127)
+     * @param instrumentoInicial    instrumento inicializado pelo usuario nas configuraçoes (default 0 (piano acustico), min 0, max 127)
+     * @param indiceRitmoInicial    indice do ritmo inicializado pelo usuario nas configuraçoes, o indice será decodificado para o ritmo correspondente (em BPM)
+     * @param oitavaInicial oitava das notas inicializada pelo usuario nas configuraçoes (default 4, min 0, max 9)
+     * @return  uma string decodificada, contendo a musica com o volume e o instrumento a ser tocado em cada instante, assim como cada uma das notas tocadas
      */
     public String decodificaArquivo(String entradaTexto, int volumeInicial, int instrumentoInicial, int indiceRitmoInicial, int oitavaInicial){
 		String stringAuxiliar = "";
