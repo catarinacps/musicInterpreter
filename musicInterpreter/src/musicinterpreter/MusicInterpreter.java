@@ -79,10 +79,10 @@ public class MusicInterpreter extends javax.swing.JFrame {
         PainelAjuda = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textoAjuda = new javax.swing.JTextArea();
-        EasterEgg = new javax.swing.JLabel();
+        fundoAlterar = new javax.swing.JLabel();
         fundoAjuda = new javax.swing.JLabel();
         botaoAjudaVoltar = new javax.swing.JButton();
-        botaoEasterEgg = new javax.swing.JButton();
+        botaoAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Saloon Music Player");
@@ -228,6 +228,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        textoTocador.setEditable(false);
         textoTocador.setColumns(20);
         textoTocador.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 24)); // NOI18N
         textoTocador.setLineWrap(true);
@@ -365,12 +366,12 @@ public class MusicInterpreter extends javax.swing.JFrame {
         PainelAjuda.add(jScrollPane2);
         jScrollPane2.setBounds(30, 20, 970, 570);
 
-        EasterEgg.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 48)); // NOI18N
-        EasterEgg.setForeground(new java.awt.Color(255, 255, 153));
-        EasterEgg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        EasterEgg.setText("MIM");
-        PainelAjuda.add(EasterEgg);
-        EasterEgg.setBounds(560, 650, 190, 80);
+        fundoAlterar.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 90)); // NOI18N
+        fundoAlterar.setForeground(new java.awt.Color(255, 255, 153));
+        fundoAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fundoAlterar.setText("MIM");
+        PainelAjuda.add(fundoAlterar);
+        fundoAlterar.setBounds(530, 650, 190, 80);
 
         fundoAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/telaajuda.png"))); // NOI18N
         PainelAjuda.add(fundoAjuda);
@@ -387,16 +388,16 @@ public class MusicInterpreter extends javax.swing.JFrame {
         PainelAjuda.add(botaoAjudaVoltar);
         botaoAjudaVoltar.setBounds(40, 660, 130, 70);
 
-        botaoEasterEgg.setBorder(null);
-        botaoEasterEgg.setBorderPainted(false);
-        botaoEasterEgg.setContentAreaFilled(false);
-        botaoEasterEgg.addActionListener(new java.awt.event.ActionListener() {
+        botaoAlterar.setBorder(null);
+        botaoAlterar.setBorderPainted(false);
+        botaoAlterar.setContentAreaFilled(false);
+        botaoAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEasterEggActionPerformed(evt);
+                botaoAlterarActionPerformed(evt);
             }
         });
-        PainelAjuda.add(botaoEasterEgg);
-        botaoEasterEgg.setBounds(83, 620, 40, 0);
+        PainelAjuda.add(botaoAlterar);
+        botaoAlterar.setBounds(83, 620, 40, 20);
 
         PainelPrincipal.add(PainelAjuda, "cartaoAjuda");
 
@@ -422,7 +423,11 @@ public class MusicInterpreter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
         } 
         else{
-            novaMusica = new Musica(textoEdicao.getText(), controleVolume.getValue(), controleInstrumento.getSelectedIndex(), controleRitmo.getSelectedIndex(), controleOitava.getSelectedIndex());
+            Configuracoes configIniciais = new Configuracoes(controleVolume.getValue(), controleInstrumento.getSelectedIndex(),
+                                                             controleRitmo.getSelectedIndex(), controleOitava.getSelectedIndex());
+            
+            novaMusica = new Musica(textoEdicao.getText(), configIniciais);
+            
             textoTocador.setText(novaMusica.pegaNotas());
             textoTocador.setCaretPosition(0);
             
@@ -433,9 +438,11 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
     private void botaoInicialAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAjudaActionPerformed
         String ajudatxt = ManipuladorArquivo.leArquivo("ajuda.txt");
+        
         textoAjuda.setText(ajudatxt);
         textoAjuda.setCaretPosition(0);  // colocar scroll no topo
-        EasterEgg.setVisible(false);  
+        fundoAlterar.setVisible(false);
+        
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoAjuda");
     }//GEN-LAST:event_botaoInicialAjudaActionPerformed
@@ -452,6 +459,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
     private void botaoTocadorVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorVoltarActionPerformed
         novaMusica.fechaMusica();
+        
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoInicial");
     }//GEN-LAST:event_botaoTocadorVoltarActionPerformed
@@ -468,20 +476,27 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
     private void botaoInicialEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialEntradaActionPerformed
         Object[] opcoesTexto = { "Arquivo", "Texto" };
-        Integer opcaoEntrada = JOptionPane.showOptionDialog(this,"Selecione o modo de entrada:","Entrada",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,opcoesTexto,opcoesTexto[0]);
+        Integer opcaoEntrada = JOptionPane.showOptionDialog(this, "Selecione o modo de entrada:", "Entrada",
+                                                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                                                            null, opcoesTexto,opcoesTexto[0]);
+        
         if (opcaoEntrada == 0){ // escolher a primeira opçao, ou seja "Arquivo"
-            JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");             
+            JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
             seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
             seletorArquivo.setAcceptAllFileFilterUsed(false);                      
+            
             int foiSelecionado = seletorArquivo.showOpenDialog(this);
+            
             if(foiSelecionado == JFileChooser.APPROVE_OPTION){
                 File arquivoEntrada = seletorArquivo.getSelectedFile();
                 String caminhoArquivo = arquivoEntrada.getAbsolutePath();
+                
                 nomeArquivo.setText(arquivoEntrada.getName());
 
                 String entradaLida = ManipuladorArquivo.leArquivo(caminhoArquivo);
                 textoEdicao.setText(entradaLida);
                 textoEdicao.setCaretPosition(0);
+                
                 CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
                 cartao.show(PainelPrincipal, "cartaoEdicao");
             }
@@ -491,27 +506,30 @@ public class MusicInterpreter extends javax.swing.JFrame {
             textoEdicao.setText("");
             textoEdicao.setCaretPosition(0);
             nomeArquivo.setText("Entrada de Texto");
+            
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoEdicao");
         }
        
     }//GEN-LAST:event_botaoInicialEntradaActionPerformed
 
-    private void botaoEasterEggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEasterEggActionPerformed
-         EasterEgg.setVisible(true);
-    }//GEN-LAST:event_botaoEasterEggActionPerformed
+    private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
+         fundoAlterar.setVisible(true);
+    }//GEN-LAST:event_botaoAlterarActionPerformed
 
     private void botaoEdicaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEdicaoSalvarActionPerformed
         JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
         seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
         seletorArquivo.setAcceptAllFileFilterUsed(false);
+        
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
+        
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             String nome = arquivoEntrada.getName();
             
-            if(!caminhoArquivo.endsWith(".txt") ){
+            if(!caminhoArquivo.endsWith(".txt") ){ //Caso o usuario nao digite a extencao do arquivo
                 caminhoArquivo += ".txt";
                 nome += ".txt";
             }
@@ -527,9 +545,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
         else{
             try {
                 novaMusica.tocaMusica();
-            } catch (InvalidMidiDataException ex) {
-                Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (MidiUnavailableException ex) {
+            } catch (InvalidMidiDataException | MidiUnavailableException ex) {
                 Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -548,7 +564,9 @@ public class MusicInterpreter extends javax.swing.JFrame {
         JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
         seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Audio","mid"));
         seletorArquivo.setAcceptAllFileFilterUsed(false);
+        
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
+        
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
@@ -581,15 +599,18 @@ public class MusicInterpreter extends javax.swing.JFrame {
         try {           
             javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -608,7 +629,6 @@ public class MusicInterpreter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel EasterEgg;
     private javax.swing.JPanel PainelAbertura;
     private javax.swing.JPanel PainelAjuda;
     private javax.swing.JPanel PainelConfiguracoes;
@@ -617,8 +637,8 @@ public class MusicInterpreter extends javax.swing.JFrame {
     private javax.swing.JPanel PainelPrincipal;
     private javax.swing.JPanel PainelTocador;
     private javax.swing.JButton botaoAjudaVoltar;
+    private javax.swing.JButton botaoAlterar;
     private javax.swing.JButton botaoConfiguracoesVoltar;
-    private javax.swing.JButton botaoEasterEgg;
     private javax.swing.JButton botaoEdicaoSalvar;
     private javax.swing.JButton botaoEdicaoVoltar;
     private javax.swing.JButton botaoInicialAjuda;
@@ -637,6 +657,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
     private javax.swing.JSlider controleVolume;
     private javax.swing.JLabel fundoAbertura;
     private javax.swing.JLabel fundoAjuda;
+    private javax.swing.JLabel fundoAlterar;
     private javax.swing.JLabel fundoConfiguracoes;
     private javax.swing.JLabel fundoEdicao;
     private javax.swing.JLabel fundoInicial;
