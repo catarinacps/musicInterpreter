@@ -82,9 +82,9 @@ public class DecodificadorTexto {
     }
 
     private int multiplicaVolume(int volume, float multiplicador) {
-        float multiplicacaoFloat = volume * multiplicador;
+        float multiplicacaoFloat = volume * multiplicador;		//utilizamos float ja que, na definicao, aumenta-se 10%
         int multiplicacaoInt = Math.round(multiplicacaoFloat);
-        
+
         if (multiplicacaoInt > VOLUME_MAXIMO) {
             multiplicacaoInt = VOLUME_MAXIMO;
         }

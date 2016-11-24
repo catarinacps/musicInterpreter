@@ -316,7 +316,6 @@ public class MusicInterpreter extends javax.swing.JFrame {
         textoEdicao.setRows(5);
         textoEdicao.setBorder(null);
         textoEdicao.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textoEdicao.setHighlighter(null);
         jScrollPane1.setViewportView(textoEdicao);
 
         PainelEdicao.add(jScrollPane1);
@@ -361,6 +360,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
         textoAjuda.setLineWrap(true);
         textoAjuda.setRows(5);
         textoAjuda.setBorder(null);
+        textoAjuda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(textoAjuda);
 
         PainelAjuda.add(jScrollPane2);
@@ -421,16 +421,16 @@ public class MusicInterpreter extends javax.swing.JFrame {
     private void botaoInicialAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAvancarActionPerformed
         if (textoEdicao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Selecione uma entrada!");
-        } 
+        }
         else{
             Configuracoes configIniciais = new Configuracoes(controleVolume.getValue(), controleInstrumento.getSelectedIndex(),
                                                              controleRitmo.getSelectedIndex(), controleOitava.getSelectedIndex());
-            
+
             novaMusica = new Musica(textoEdicao.getText(), configIniciais);
-            
+
             textoTocador.setText(novaMusica.pegaNotas());
             textoTocador.setCaretPosition(0);
-            
+
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoTocador");
         }
@@ -438,11 +438,11 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
     private void botaoInicialAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInicialAjudaActionPerformed
         String ajudatxt = ManipuladorArquivo.leArquivo("ajuda.txt");
-        
+
         textoAjuda.setText(ajudatxt);
         textoAjuda.setCaretPosition(0);  // colocar scroll no topo
         fundoAlterar.setVisible(false);
-        
+
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoAjuda");
     }//GEN-LAST:event_botaoInicialAjudaActionPerformed
@@ -459,7 +459,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
 
     private void botaoTocadorVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorVoltarActionPerformed
         novaMusica.fechaMusica();
-        
+
         CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
         cartao.show(PainelPrincipal, "cartaoInicial");
     }//GEN-LAST:event_botaoTocadorVoltarActionPerformed
@@ -479,38 +479,38 @@ public class MusicInterpreter extends javax.swing.JFrame {
         Integer opcaoEntrada = JOptionPane.showOptionDialog(this, "Selecione o modo de entrada:", "Entrada",
                                                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                                                             null, opcoesTexto,opcoesTexto[0]);
-        
+
         if (opcaoEntrada == 0){ // escolher a primeira opçao, ou seja "Arquivo"
             JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
             seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
-            seletorArquivo.setAcceptAllFileFilterUsed(false);                      
-            
+            seletorArquivo.setAcceptAllFileFilterUsed(false);
+
             int foiSelecionado = seletorArquivo.showOpenDialog(this);
-            
+
             if(foiSelecionado == JFileChooser.APPROVE_OPTION){
                 File arquivoEntrada = seletorArquivo.getSelectedFile();
                 String caminhoArquivo = arquivoEntrada.getAbsolutePath();
-                
+
                 nomeArquivo.setText(arquivoEntrada.getName());
 
                 String entradaLida = ManipuladorArquivo.leArquivo(caminhoArquivo);
                 textoEdicao.setText(entradaLida);
                 textoEdicao.setCaretPosition(0);
-                
+
                 CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
                 cartao.show(PainelPrincipal, "cartaoEdicao");
             }
         }
-            
+
         else if (opcaoEntrada == 1){ // escolher a segunda opcao, ou seja "Texto"
             textoEdicao.setText("");
             textoEdicao.setCaretPosition(0);
             nomeArquivo.setText("Entrada de Texto");
-            
+
             CardLayout cartao = (CardLayout) PainelPrincipal.getLayout();
             cartao.show(PainelPrincipal, "cartaoEdicao");
         }
-       
+
     }//GEN-LAST:event_botaoInicialEntradaActionPerformed
 
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
@@ -521,15 +521,15 @@ public class MusicInterpreter extends javax.swing.JFrame {
         JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
         seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Texto","txt"));
         seletorArquivo.setAcceptAllFileFilterUsed(false);
-        
+
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
-        
+
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
             String nome = arquivoEntrada.getName();
-            
-            if(!caminhoArquivo.endsWith(".txt") ){ //Caso o usuario nao digite a extencao do arquivo
+
+            if(!caminhoArquivo.endsWith(".txt") ){ //Caso o usuario nao digite a extensao do arquivo
                 caminhoArquivo += ".txt";
                 nome += ".txt";
             }
@@ -549,7 +549,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
                 Logger.getLogger(MusicInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }//GEN-LAST:event_botaoTocadorPlayActionPerformed
 
     private void botaoTocadorPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTocadorPauseActionPerformed
@@ -564,13 +564,13 @@ public class MusicInterpreter extends javax.swing.JFrame {
         JFileChooser seletorArquivo = new JFileChooser(System.getProperty("user.home") + "/Desktop");
         seletorArquivo.addChoosableFileFilter(new FileNameExtensionFilter("Arquivo de Audio","mid"));
         seletorArquivo.setAcceptAllFileFilterUsed(false);
-        
+
         int foiSelecionado = seletorArquivo.showSaveDialog(this);
-        
+
         if(foiSelecionado == JFileChooser.APPROVE_OPTION){
             File arquivoEntrada = seletorArquivo.getSelectedFile();
             String caminhoArquivo = arquivoEntrada.getAbsolutePath();
-            
+
             try {
                 if(!caminhoArquivo.endsWith(".mid")){
                 caminhoArquivo += ".mid";
@@ -594,11 +594,11 @@ public class MusicInterpreter extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try {           
+        try {
             javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MusicInterpreter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -610,7 +610,7 @@ public class MusicInterpreter extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
